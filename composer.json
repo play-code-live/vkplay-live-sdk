@@ -1,0 +1,16 @@
+{
+    "name": "play_code/vkplay-sdk",
+    "type": "library",
+    "autoload": {
+        "psr-4": {
+            "PlayCode\\VkplaySdk\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Elijah Zobenko",
+            "email": "info@play-code.ru"
+        }
+    ],
+    "require": {}
+}
