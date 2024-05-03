@@ -12,7 +12,14 @@
     "type": "library",
     "autoload": {
         "psr-4": {
-            "PlayCode\\VKPlayLiveSDK\\": "src/",
+            "PlayCode\\VKPlayLiveSDK\\": "src/"
+        },
+        "exclude-from-classmap": [
+            "tests/"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
             "PlayCode\\Tests\\VKPlayLiveSDK\\": "tests/"
         }
     },

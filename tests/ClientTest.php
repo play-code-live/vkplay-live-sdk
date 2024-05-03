@@ -52,17 +52,27 @@ class ClientTest extends TestCase
     }
 
     #[DataProvider('getAccessTokenProvider')]
-    public function testGetAccessToken(Client $client, array $expectedProperties, ?string $expectedExceptionClass = null): void
+    public function testGetAccessToken(Client $c, array $propValues, ?string $exception = null): void
     {
-        if ($expectedExceptionClass !== null) {
-            $this->expectException($expectedExceptionClass);
-        }
+        $this->clientMethodCallTest(new MethodCallStruct(
+            'getAccessToken',
+            ['client_id', 'client_secret'],
+            $c,
+            $propValues,
+            $exception
+        ));
+    }
 
-        $tokenData = $client->getAccessToken('some_code', '');
-        foreach ($expectedProperties as $property => $value) {
-            $this->assertObjectHasProperty($property, $tokenData);
-            $this->assertEquals($value, $tokenData->{$property});
-        }
+    #[DataProvider('getAccessTokenProvider')]
+    public function testRefreshToken(Client $c, array $propValues, ?string $exception = null): void
+    {
+        $this->clientMethodCallTest(new MethodCallStruct(
+            'refreshToken',
+            ['some_refresh_token'],
+            $c,
+            $propValues,
+            $exception
+        ));
     }
 
     public static function getAccessTokenProvider(): array
@@ -90,5 +100,52 @@ class ClientTest extends TestCase
                 ParseJsonException::class,
             ]
         ];
+    }
+
+    #[DataProvider('revokeTokenProvider')]
+    public function testRevokeToken(Client $c, array $propValues, ?string $exception = null): void
+    {
+        $this->clientMethodCallTest(new MethodCallStruct(
+            'revokeToken',
+            ['some_token'],
+            $c,
+            $propValues,
+            $exception
+        ));
+    }
+
+    public static function revokeTokenProvider(): array
+    {
+        return [
+            'success' => [
+                new ClientExtended([
+                    new Response(200, [], '{}'),
+                ]),
+                []
+            ],
+            'bad request' => [
+                new ClientExtended([
+                    new Response(400, [], '{}'),
+                ]),
+                [],
+                ClientException::class,
+            ],
+        ];
+    }
+
+    private function clientMethodCallTest(MethodCallStruct $params): void {
+        if ($params->expectedExceptionClass !== null) {
+            $this->expectException($params->expectedExceptionClass);
+        }
+
+        $tokenData = $params->client->{$params->method}(...$params->args);
+        foreach ($params->expectedProperties as $property => $value) {
+            $this->assertObjectHasProperty($property, $tokenData);
+            $this->assertEquals($value, $tokenData->{$property});
+        }
+
+        if ($params->expectedExceptionClass == null && empty($params->expectedProperties)) {
+            $this->assertEmpty($params->expectedProperties);
+        }
     }
 }
