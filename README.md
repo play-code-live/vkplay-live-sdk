@@ -67,7 +67,7 @@ $client->listChannelsOnline(20, accessToken: $tokenData->getAccessToken());
 $channelInfo = $client->getChannel('play_code');
 
 // Or with access_token
-$channelInfo = $client->getChannel('play_code', $tokenData->getAccessToken);
+$channelInfo = $client->getChannel('play_code', $tokenData->getAccessToken());
 
 // It contains all the data about channel. Example:
 $channelInfo->getChannelInfo()->getSubscribers(); // Followers count
@@ -85,4 +85,22 @@ $channelInfo->getOwner()->isVerifiedStreamer();
 $channelInfo->getStreamInfo()->getTitle();
 $channelInfo->getStreamInfo()->getCategory()->getTitle();
 $channelInfo->getStreamInfo()->getCounters()->getViewers();
+```
+
+### Channels
+
+```php
+// In the same way you can fetch up to 100 channels
+$channels = $client->getChannels([
+    'play_code',
+    'vkplay',
+    'murmoshow',
+]);
+
+// Or with access_token
+$channels = $client->getChannels([
+    'play_code',
+    'vkplay',
+    'murmoshow',
+], $tokenData->getAccessToken());
 ```

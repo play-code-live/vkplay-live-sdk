@@ -10,12 +10,14 @@ use GuzzleHttp\Exception\GuzzleException;
 use PlayCode\VKPlayLiveSDK\DTO\ChannelDTO;
 use PlayCode\VKPlayLiveSDK\Exception\ClientException;
 use PlayCode\VKPlayLiveSDK\Request\ChannelRequest;
+use PlayCode\VKPlayLiveSDK\Request\ChannelsRequest;
 use PlayCode\VKPlayLiveSDK\Request\OnlineChannelsListRequest;
 use PlayCode\VKPlayLiveSDK\Request\RefreshTokenRequest;
 use PlayCode\VKPlayLiveSDK\Request\RequestInterface;
 use PlayCode\VKPlayLiveSDK\Request\RevokeRequest;
 use PlayCode\VKPlayLiveSDK\Request\AccessTokenRequest;
 use PlayCode\VKPlayLiveSDK\Response\ChannelResponse;
+use PlayCode\VKPlayLiveSDK\Response\ChannelsResponse;
 use PlayCode\VKPlayLiveSDK\Response\OnlineChannelsListResponse;
 use PlayCode\VKPlayLiveSDK\Response\Response;
 use PlayCode\VKPlayLiveSDK\Response\ResponseInterface;
@@ -124,6 +126,23 @@ class Client
         }
 
         return ChannelResponse::createFromResponse($response)->getChannel();
+    }
+
+    /**
+     * @param string[] $channelUrls
+     * @param string|null $accessToken
+     * @return ChannelDTO[]
+     * @throws ClientException
+     */
+    public function getChannels(array $channelUrls, ?string $accessToken = null): array
+    {
+        $request = new ChannelsRequest($channelUrls, $this->clientId, $this->clientSecret, $accessToken);
+        $response = $this->sendRequest($request);
+        if (!$response->isSuccess()) {
+            throw new ClientException('Failed to refresh token', $response->getStatusCode());
+        }
+
+        return ChannelsResponse::createFromResponse($response)->getChannels();
     }
 
     /**

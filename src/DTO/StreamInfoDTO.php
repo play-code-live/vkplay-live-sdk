@@ -49,6 +49,9 @@ class StreamInfoDTO
         return $this->category;
     }
 
+    /**
+     * @return ReactionDTO[]
+     */
     public function getReactions(): array
     {
         return $this->reactions;
@@ -68,7 +71,7 @@ class StreamInfoDTO
             $data['ended_at'] ?? 0,
             $data['preview_url'] ?? '',
             CategoryDTO::fromArray($data['category'] ?? []),
-            $data['reactions'] ?? [],
+            array_map(fn($r) => CountersDTO::fromArray($r ?? []), $data['reactions'] ?? []),
             CountersDTO::fromArray($data['counters'] ?? []),
         );
     }
