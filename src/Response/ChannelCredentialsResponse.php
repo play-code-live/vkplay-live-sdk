@@ -1,28 +1,17 @@
 <?php
 
+declare(strict_types=1);
+
 namespace PlayCode\VKPlayLiveSDK\Response;
 
-class ChannelCredentialsResponse extends Response
+class ChannelCredentialsResponse extends JsonResponse
 {
-    private string $url;
-    private string $token;
+    public readonly string $url;
+    public readonly string $token;
 
-    public function __construct(string $body, int $statusCode)
+    protected function buildFromBody(array $data): void
     {
-        $data = json_decode($body, true)['data'] ?? [];
-        $this->url = $data['url'] ?? '';
-        $this->token = $data['token'] ?? '';
-
-        parent::__construct('', $statusCode);
-    }
-
-    public function getUrl(): string
-    {
-        return $this->url;
-    }
-
-    public function getToken(): string
-    {
-        return $this->token;
+        $this->url = $data['data']['url'] ?? '';
+        $this->token = $data['data']['token'] ?? '';
     }
 }

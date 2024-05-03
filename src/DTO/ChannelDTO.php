@@ -7,26 +7,11 @@ namespace PlayCode\VKPlayLiveSDK\DTO;
 class ChannelDTO
 {
     public function __construct(
-        private ChannelInfoDTO $channelInfo,
-        private OwnerDTO $owner,
-        private StreamInfoDTO $streamInfo,
+        public readonly ChannelInfoDTO $channelInfo,
+        public readonly OwnerDTO $owner,
+        public readonly StreamInfoDTO $streamInfo,
     )
     {
-    }
-
-    public function getChannelInfo(): ChannelInfoDTO
-    {
-        return $this->channelInfo;
-    }
-
-    public function getOwner(): OwnerDTO
-    {
-        return $this->owner;
-    }
-
-    public function getStreamInfo(): StreamInfoDTO
-    {
-        return $this->streamInfo;
     }
 
     public static function fromArray(array $data): self

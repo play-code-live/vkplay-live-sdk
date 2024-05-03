@@ -1,18 +1,33 @@
 <?php
 
+declare(strict_types=1);
+
 namespace PlayCode\VKPlayLiveSDK\Request;
 
 class SearchCategoriesRequest extends OnlineChannelsRequest
 {
+    private string $clientId;
+    private ?string $accessToken = null;
+    private string $clientSecret;
+    private string $query;
+    private int $limit;
+    private string $categoryType;
+
     public function __construct(
-        private string $clientId,
-        private string $clientSecret,
-        private string $query,
-        private int $limit,
-        private string $categoryType = '',
-        private ?string $accessToken = null
+        string $clientId,
+        string $clientSecret,
+        string $query,
+        string $categoryType,
+        int $limit = self::LIMIT_MAX,
+        ?string $accessToken = null
     )
     {
+        $this->categoryType = $categoryType;
+        $this->limit = $limit;
+        $this->query = $query;
+        $this->clientSecret = $clientSecret;
+        $this->accessToken = $accessToken;
+        $this->clientId = $clientId;
         parent::__construct($this->clientId, $this->clientSecret, $this->limit, '', $this->categoryType, $this->accessToken);
     }
 
@@ -28,7 +43,7 @@ class SearchCategoriesRequest extends OnlineChannelsRequest
             'query' => $this->query,
         ];
         if (!empty($this->categoryType)) {
-            $query['category_type'] = $this->categoryType;
+            $query['type'] = $this->categoryType;
         }
 
         return $query;

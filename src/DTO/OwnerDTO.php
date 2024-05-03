@@ -7,38 +7,13 @@ namespace PlayCode\VKPlayLiveSDK\DTO;
 class OwnerDTO
 {
     public function __construct(
-        private int $id,
-        private string $nick,
-        private int $nickColor,
-        private string $avatarUrl,
-        private bool $isVerifiedStreamer
+        public readonly int $id,
+        public readonly string $nick,
+        public readonly int $nickColor,
+        public readonly string $avatarUrl,
+        public readonly bool $isVerifiedStreamer
     )
     {
-    }
-
-    public function getId(): int
-    {
-        return $this->id;
-    }
-
-    public function getNick(): string
-    {
-        return $this->nick;
-    }
-
-    public function getNickColor(): int
-    {
-        return $this->nickColor;
-    }
-
-    public function getAvatarUrl(): string
-    {
-        return $this->avatarUrl;
-    }
-
-    public function isVerifiedStreamer(): bool
-    {
-        return $this->isVerifiedStreamer;
     }
 
     public static function fromArray(array $data): self

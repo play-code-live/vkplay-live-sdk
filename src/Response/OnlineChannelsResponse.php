@@ -4,23 +4,13 @@ namespace PlayCode\VKPlayLiveSDK\Response;
 
 use PlayCode\VKPlayLiveSDK\DTO\ChannelDTO;
 
-class OnlineChannelsResponse extends Response
+class OnlineChannelsResponse extends JsonResponse
 {
     /** @var ChannelDTO[] */
-    private array $channels;
+    public readonly array $channels;
 
-    public function __construct(string $body, int $statusCode)
+    protected function buildFromBody(array $data): void
     {
-        $data = json_decode($body, true)['data'] ?? [];
-        foreach ($data['channels'] ?? [] as $channel) {
-            $this->channels[] = ChannelDTO::fromArray($channel);
-        }
-
-        parent::__construct('', $statusCode);
-    }
-
-    public function getChannels(): array
-    {
-        return $this->channels;
+        $this->channels = array_map(fn($channel) => ChannelDTO::fromArray($channel), $data['data']['channels']);
     }
 }

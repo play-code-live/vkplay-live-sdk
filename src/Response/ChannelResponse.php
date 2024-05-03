@@ -1,23 +1,17 @@
 <?php
 
+declare(strict_types=1);
+
 namespace PlayCode\VKPlayLiveSDK\Response;
 
 use PlayCode\VKPlayLiveSDK\DTO\ChannelDTO;
 
-class ChannelResponse extends Response
+class ChannelResponse extends JsonResponse
 {
-    private ChannelDTO $channel;
+    public readonly ChannelDTO $channel;
 
-    public function __construct(string $body, int $statusCode)
+    protected function buildFromBody(array $data): void
     {
-        $data = json_decode($body, true);
         $this->channel = ChannelDTO::fromArray($data['data'] ?? []);
-
-        parent::__construct('', $statusCode);
-    }
-
-    public function getChannel(): ChannelDTO
-    {
-        return $this->channel;
     }
 }

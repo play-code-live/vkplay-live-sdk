@@ -1,23 +1,17 @@
 <?php
 
+declare(strict_types=1);
+
 namespace PlayCode\VKPlayLiveSDK\Response;
 
 use PlayCode\VKPlayLiveSDK\DTO\CategoryDTO;
 
-class CategoryResponse extends Response
+class CategoryResponse extends JsonResponse
 {
-    private CategoryDTO $category;
+    public readonly CategoryDTO $category;
 
-    public function __construct(string $body, int $statusCode)
+    protected function buildFromBody(array $data): void
     {
-        $data = json_decode($body, true)['data'] ?? [];
-        $this->category = CategoryDTO::fromArray($data['category'] ?? []);
-
-        parent::__construct('', $statusCode);
-    }
-
-    public function getCategory(): CategoryDTO
-    {
-        return $this->category;
+        $this->category = CategoryDTO::fromArray($data['data']['category'] ?? []);
     }
 }

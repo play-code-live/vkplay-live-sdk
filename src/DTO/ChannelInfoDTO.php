@@ -7,38 +7,13 @@ namespace PlayCode\VKPlayLiveSDK\DTO;
 class ChannelInfoDTO
 {
     public function __construct(
-        private string $url,
-        private string $coverUrl,
-        private string $status,
-        private int $subscribers,
-        private WebSocketChannelsDTO $webSocketChannels
+        public string $url,
+        public string $coverUrl,
+        public string $status,
+        public int $subscribers,
+        public WebSocketChannelsDTO $webSocketChannels
     )
     {
-    }
-
-    public function getUrl(): string
-    {
-        return $this->url;
-    }
-
-    public function getCoverUrl(): string
-    {
-        return $this->coverUrl;
-    }
-
-    public function getStatus(): string
-    {
-        return $this->status;
-    }
-
-    public function getWebSocketChannels(): WebSocketChannelsDTO
-    {
-        return $this->webSocketChannels;
-    }
-
-    public function getSubscribers(): int
-    {
-        return $this->subscribers;
     }
 
     public static function fromArray(array $data): self

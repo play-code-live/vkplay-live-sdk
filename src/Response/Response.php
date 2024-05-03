@@ -6,7 +6,7 @@ namespace PlayCode\VKPlayLiveSDK\Response;
 
 class Response implements ResponseInterface
 {
-    private string $body;
+    protected string $body;
     private int $statusCode;
 
     public function __construct(string $body, int $statusCode)

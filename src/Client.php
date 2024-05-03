@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace PlayCode\VKPlayLiveSDK;
 
-use Grpc\Channel;
 use GuzzleHttp\Client as HttpClient;
 use GuzzleHttp\Exception\GuzzleException;
 use PlayCode\VKPlayLiveSDK\DTO\CategoryDTO;
@@ -119,7 +118,7 @@ class Client
             throw new ClientException('Failed to get online channels', $response->getStatusCode());
         }
 
-        return OnlineChannelsResponse::createFromResponse($response)->getChannels();
+        return OnlineChannelsResponse::createFromResponse($response)->channels;
     }
 
     /**
@@ -140,7 +139,7 @@ class Client
             throw new ClientException('Failed to get online categories', $response->getStatusCode());
         }
 
-        return CategoriesResponse::createFromResponse($response)->getCategories();
+        return CategoriesResponse::createFromResponse($response)->categories;
     }
 
     /**
@@ -159,7 +158,7 @@ class Client
             throw new ClientException('Failed to get category', $response->getStatusCode());
         }
 
-        return CategoryResponse::createFromResponse($response)->getCategory();
+        return CategoryResponse::createFromResponse($response)->category;
     }
 
     /**
@@ -168,16 +167,16 @@ class Client
      */
     public function searchCategory(
         string $query,
+        string $categoryType,
         int $limit,
-        string $categoryType = '',
         ?string $accessToken = null
     ): array {
         $request = new SearchCategoriesRequest(
             $this->clientId,
             $this->clientSecret,
             $query,
-            $limit,
             $categoryType,
+            $limit,
             $accessToken
         );
         $response = $this->sendRequest($request);
@@ -185,7 +184,7 @@ class Client
             throw new ClientException('Failed to search categories', $response->getStatusCode());
         }
 
-        return CategoriesResponse::createFromResponse($response)->getCategories();
+        return CategoriesResponse::createFromResponse($response)->categories;
     }
 
     /**
@@ -199,7 +198,7 @@ class Client
             throw new ClientException('Failed to get channel', $response->getStatusCode());
         }
 
-        return ChannelResponse::createFromResponse($response)->getChannel();
+        return ChannelResponse::createFromResponse($response)->channel;
     }
 
     /**
@@ -216,7 +215,7 @@ class Client
             throw new ClientException('Failed to get channels', $response->getStatusCode());
         }
 
-        return ChannelsResponse::createFromResponse($response)->getChannels();
+        return ChannelsResponse::createFromResponse($response)->channels;
     }
 
     /**

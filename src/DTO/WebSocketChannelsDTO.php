@@ -7,56 +7,16 @@ namespace PlayCode\VKPlayLiveSDK\DTO;
 class WebSocketChannelsDTO
 {
     public function __construct(
-        private string $chat,
-        private string $privateChat,
-        private string $info,
-        private string $privateInfo,
-        private string $channelPoints,
-        private string $privateChannelPoints,
-        private string $limitedChat,
-        private string $privateLimitedChat,
+        public readonly string $chat,
+        public readonly string $privateChat,
+        public readonly string $info,
+        public readonly string $privateInfo,
+        public readonly string $channelPoints,
+        public readonly string $privateChannelPoints,
+        public readonly string $limitedChat,
+        public readonly string $privateLimitedChat,
     )
     {
-    }
-
-    public function getChat(): string
-    {
-        return $this->chat;
-    }
-
-    public function getPrivateChat(): string
-    {
-        return $this->privateChat;
-    }
-
-    public function getInfo(): string
-    {
-        return $this->info;
-    }
-
-    public function getPrivateInfo(): string
-    {
-        return $this->privateInfo;
-    }
-
-    public function getChannelPoints(): string
-    {
-        return $this->channelPoints;
-    }
-
-    public function getPrivateChannelPoints(): string
-    {
-        return $this->privateChannelPoints;
-    }
-
-    public function getLimitedChat(): string
-    {
-        return $this->limitedChat;
-    }
-
-    public function getPrivateLimitedChat(): string
-    {
-        return $this->privateLimitedChat;
     }
 
     public static function fromArray(array $data): self

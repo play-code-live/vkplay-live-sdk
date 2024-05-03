@@ -9,20 +9,10 @@ class ReactionDTO
     public const TYPE_HEART = 'heart';
 
     public function __construct(
-        private string $type,
-        private int $count
+        public readonly string $type,
+        public readonly int $count
     )
     {
-    }
-
-    public function getType(): string
-    {
-        return $this->type;
-    }
-
-    public function getCount(): int
-    {
-        return $this->count;
     }
 
     public static function fromArray(array $data): self

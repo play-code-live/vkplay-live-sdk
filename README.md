@@ -41,17 +41,17 @@ $code = '...';
 
 // Get token data
 $tokenData = $client->getAccessToken($code, $redirectUri);
-print("Access token: " . $tokenData->getAccessToken());
-print("Refresh token: " . $tokenData->getRefreshToken());
-print("Expires in: " . $tokenData->getExpiresIn());
+print("Access token: " . $tokenData->accessToken);
+print("Refresh token: " . $tokenData->refreshToken);
+print("Expires in: " . $tokenData->expiresIn);
 
 // Refresh token
-$tokenData = $client->refreshToken($tokenData->getRefreshToken());
+$tokenData = $client->refreshToken($tokenData->refreshToken);
 
 // Revoke token
-$client->revokeToken($tokenData->getAccessToken());
+$client->revokeToken($tokenData->accessToken);
 // or
-$client->revokeToken($tokenData->getRefreshToken(), RevokeRequest::HINT_REFRESH_TOKEN);
+$client->revokeToken($tokenData->refreshToken, RevokeRequest::HINT_REFRESH_TOKEN);
 
 ```
 
@@ -72,7 +72,7 @@ $client->listChannelsOnline(20, categoryId: '4588a9f0-b606-4827-9b6a-f2da4309c19
 $client->listChannelsOnline(20, categoryType: Category::TYPE_GAME);
 
 // It works with clientId and clientSecret, but you can use access_token
-$client->listChannelsOnline(20, accessToken: $tokenData->getAccessToken());
+$client->listChannelsOnline(20, accessToken: $tokenData->accessToken);
 ```
 
 #### Categories Online
@@ -85,7 +85,7 @@ $client->listCategoriesOnline(limit: 20);
 $client->listCategoriesOnline(20, categoryType: Category::TYPE_GAME);
 
 // It works with clientId and clientSecret, but you can use access_token
-$client->listCategoriesOnline(20, accessToken: $tokenData->getAccessToken());
+$client->listCategoriesOnline(20, accessToken: $tokenData->accessToken);
 ```
 
 ### Category
@@ -93,19 +93,16 @@ $client->listCategoriesOnline(20, accessToken: $tokenData->getAccessToken());
 ```php
 $category = $client->getCategory('3c6b4b27-75f2-49c4-b967-f15aa88e2038');
 // or
-$category = $client->getCategory('3c6b4b27-75f2-49c4-b967-f15aa88e2038', $tokenData->getAccessToken());
+$category = $client->getCategory('3c6b4b27-75f2-49c4-b967-f15aa88e2038', $tokenData->accessToken);
 
 // Title of the category
-$category->getTitle();
+$category->title;
 
 // Image url
-$category->getCoverUrl();
+$category->coverUrl;
 
 // Type of category. @see Category::class
-$category->getType();
-
-// Current amount of viewers does not arrive in the response of current method
-$category->getViewers(); // -> 0
+$category->type;
 ```
 
 ### Category Search
@@ -113,7 +110,7 @@ $category->getViewers(); // -> 0
 ```php
 $category = $client->searchCategory('Говорим и смотрим', limit: 20);
 // or
-$category = $client->searchCategory('Говорим и смотрим', limit: 20, accessToken: $tokenData->getAccessToken());
+$category = $client->searchCategory('Говорим и смотрим', limit: 20, accessToken: $tokenData->accessToken);
 ```
 
 ### Channel
@@ -123,24 +120,24 @@ $category = $client->searchCategory('Говорим и смотрим', limit: 2
 $channelInfo = $client->getChannel('play_code');
 
 // Or with access_token
-$channelInfo = $client->getChannel('play_code', $tokenData->getAccessToken());
+$channelInfo = $client->getChannel('play_code', $tokenData->accessToken);
 
 // It contains all the data about channel. Example:
-$channelInfo->getChannelInfo()->getSubscribers(); // Followers count
-$channelInfo->getChannelInfo()->getStatus(); // Current status
+$channelInfo->channelInfo->subscribers; // Followers count
+$channelInfo->channelInfo->status; // Current status
 
 // Socket addresses
-$channelInfo->getChannelInfo()->getWebSocketChannels()->getChat();
+$channelInfo->channelInfo->webSocketChannels->chat;
 
 // Owner info
-$channelInfo->getOwner()->getAvatarUrl();
-$channelInfo->getOwner()->getNick();
-$channelInfo->getOwner()->isVerifiedStreamer();
+$channelInfo->owner->avatarUrl;
+$channelInfo->owner->nick;
+$channelInfo->owner->isVerifiedStreamer;
 
 // Stream info
-$channelInfo->getStreamInfo()->getTitle();
-$channelInfo->getStreamInfo()->getCategory()->getTitle();
-$channelInfo->getStreamInfo()->getCounters()->getViewers();
+$channelInfo->streamInfo->title;
+$channelInfo->streamInfo->category->title;
+$channelInfo->streamInfo->counters->viewers;
 ```
 
 ### Channels
@@ -158,19 +155,19 @@ $channels = $client->getChannels([
     'play_code',
     'vkplay',
     'murmoshow',
-], $tokenData->getAccessToken());
+], $tokenData->accessToken);
 ```
 
 ### Channel Credentials
 
 ```php
-$credentials = $client->getChannelCredentials('play_code', $tokenData->getAccessToken());
+$credentials = $client->getChannelCredentials('play_code', $tokenData->accessToken);
 
 // RTMP-stream url
-$credentials->getUrl();
+$credentials->url;
 
 // Stream token
-$credentials->getToken();
+$credentials->token;
 ```
 
 ## License
