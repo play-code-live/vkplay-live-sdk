@@ -1,5 +1,18 @@
 # VKPlayLive SDK
 
+[![Latest Version](https://img.shields.io/github/release/play-code-live/vkplay-live-sdk.svg?style=flat-square)](https://github.com/play-code-live/vkplay-live-sdk/releases)
+[![Maintainability](https://api.codeclimate.com/v1/badges/ae44a8e5065c0b28b0cb/maintainability)](https://codeclimate.com/github/play-code-live/vkplay-live-sdk/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/ae44a8e5065c0b28b0cb/test_coverage)](https://codeclimate.com/github/play-code-live/vkplay-live-sdk/test_coverage)
+
+## Installation
+
+The recommended way to install VKPlayLiveSDK is through
+[Composer](https://getcomposer.org/).
+
+```bash
+composer require play-code-live/vkplay-live-sdk
+```
+
 ## Authorization
 
 ```php
@@ -159,3 +172,7 @@ $credentials->getUrl();
 // Stream token
 $credentials->getToken();
 ```
+
+## License
+
+VKPlayLiveSDK is made available under the MIT License (MIT). Please see [License File](LICENSE) for more information.
