@@ -9,6 +9,7 @@ use GuzzleHttp\Client as HttpClient;
 use GuzzleHttp\Exception\GuzzleException;
 use PlayCode\VKPlayLiveSDK\DTO\ChannelDTO;
 use PlayCode\VKPlayLiveSDK\Exception\ClientException;
+use PlayCode\VKPlayLiveSDK\Request\ChannelCredentialsRequest;
 use PlayCode\VKPlayLiveSDK\Request\ChannelRequest;
 use PlayCode\VKPlayLiveSDK\Request\ChannelsRequest;
 use PlayCode\VKPlayLiveSDK\Request\OnlineChannelsListRequest;
@@ -16,6 +17,7 @@ use PlayCode\VKPlayLiveSDK\Request\RefreshTokenRequest;
 use PlayCode\VKPlayLiveSDK\Request\RequestInterface;
 use PlayCode\VKPlayLiveSDK\Request\RevokeRequest;
 use PlayCode\VKPlayLiveSDK\Request\AccessTokenRequest;
+use PlayCode\VKPlayLiveSDK\Response\ChannelCredentialsResponse;
 use PlayCode\VKPlayLiveSDK\Response\ChannelResponse;
 use PlayCode\VKPlayLiveSDK\Response\ChannelsResponse;
 use PlayCode\VKPlayLiveSDK\Response\OnlineChannelsListResponse;
@@ -108,7 +110,7 @@ class Client
         );
         $response = $this->sendRequest($request);
         if (!$response->isSuccess()) {
-            throw new ClientException('Failed to refresh token', $response->getStatusCode());
+            throw new ClientException('Failed to get online channels', $response->getStatusCode());
         }
 
         return OnlineChannelsListResponse::createFromResponse($response)->getChannels();
@@ -122,7 +124,7 @@ class Client
         $request = new ChannelRequest($channelUrl, $this->clientId, $this->clientSecret, $accessToken);
         $response = $this->sendRequest($request);
         if (!$response->isSuccess()) {
-            throw new ClientException('Failed to refresh token', $response->getStatusCode());
+            throw new ClientException('Failed to get channel', $response->getStatusCode());
         }
 
         return ChannelResponse::createFromResponse($response)->getChannel();
@@ -139,10 +141,24 @@ class Client
         $request = new ChannelsRequest($channelUrls, $this->clientId, $this->clientSecret, $accessToken);
         $response = $this->sendRequest($request);
         if (!$response->isSuccess()) {
-            throw new ClientException('Failed to refresh token', $response->getStatusCode());
+            throw new ClientException('Failed to get channels', $response->getStatusCode());
         }
 
         return ChannelsResponse::createFromResponse($response)->getChannels();
+    }
+
+    /**
+     * @throws ClientException
+     */
+    public function getChannelCredentials(string $channelUrl, string $accessToken): ChannelCredentialsResponse
+    {
+        $request = new ChannelCredentialsRequest($channelUrl, $accessToken);
+        $response = $this->sendRequest($request);
+        if (!$response->isSuccess()) {
+            throw new ClientException('Failed to get channel credentials', $response->getStatusCode());
+        }
+
+        return ChannelCredentialsResponse::createFromResponse($response);
     }
 
     /**

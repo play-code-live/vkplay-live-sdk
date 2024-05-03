@@ -20,7 +20,7 @@ class ChannelRequest implements RequestInterface
 
     public function getMethod(): string
     {
-        return RequestInterface::METHOD_GET;
+        return self::METHOD_GET;
     }
 
     public function getFormParams(): array

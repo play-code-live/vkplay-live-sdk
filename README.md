@@ -104,3 +104,15 @@ $channels = $client->getChannels([
     'murmoshow',
 ], $tokenData->getAccessToken());
 ```
+
+### Channel Credentials
+
+```php
+$credentials = $client->getChannelCredentials('play_code', $tokenData->getAccessToken());
+
+// RTMP-stream url
+$credentials->getUrl();
+
+// Stream token
+$credentials->getToken();
+```

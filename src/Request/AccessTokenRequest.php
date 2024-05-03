@@ -23,7 +23,7 @@ class AccessTokenRequest implements RequestInterface
 
     public function getMethod(): string
     {
-        return RequestInterface::METHOD_POST;
+        return self::METHOD_POST;
     }
 
     public function getFormParams(): array
