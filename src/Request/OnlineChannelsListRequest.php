@@ -2,7 +2,7 @@
 
 namespace PlayCode\VKPlayLiveSDK\Request;
 
-class OnlineChannelsListRequest implements RequestInterface
+class OnlineChannelsListRequest extends ChannelRequest
 {
     public function __construct(
         private string $clientId,
@@ -13,6 +13,7 @@ class OnlineChannelsListRequest implements RequestInterface
         private ?string $accessToken = null
     )
     {
+        parent::__construct('', $this->clientId, $this->clientSecret, $this->accessToken);
     }
 
     public function getEndpoint(): string
@@ -33,34 +34,5 @@ class OnlineChannelsListRequest implements RequestInterface
         }
 
         return $query;
-    }
-
-    public function getMethod(): string
-    {
-        return RequestInterface::METHOD_GET;
-    }
-
-    public function getFormParams(): array
-    {
-        return [];
-    }
-
-    public function getJsonParams(): array
-    {
-        return [];
-    }
-
-    public function getHeaders(): array
-    {
-        $headers = [
-            'Content-Type' => 'application/json',
-        ];
-
-        if ($this->accessToken !== null) {
-            $headers['Authorization'] = 'Bearer ' . $this->accessToken;
-        } else {
-            $headers['Authorization'] = 'Basic ' . base64_encode($this->clientId.':'.$this->clientSecret);
-        }
-        return $headers;
     }
 }

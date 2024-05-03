@@ -4,14 +4,18 @@ declare(strict_types=1);
 
 namespace PlayCode\VKPlayLiveSDK;
 
+use Grpc\Channel;
 use GuzzleHttp\Client as HttpClient;
 use GuzzleHttp\Exception\GuzzleException;
+use PlayCode\VKPlayLiveSDK\DTO\ChannelDTO;
 use PlayCode\VKPlayLiveSDK\Exception\ClientException;
+use PlayCode\VKPlayLiveSDK\Request\ChannelRequest;
 use PlayCode\VKPlayLiveSDK\Request\OnlineChannelsListRequest;
 use PlayCode\VKPlayLiveSDK\Request\RefreshTokenRequest;
 use PlayCode\VKPlayLiveSDK\Request\RequestInterface;
 use PlayCode\VKPlayLiveSDK\Request\RevokeRequest;
 use PlayCode\VKPlayLiveSDK\Request\AccessTokenRequest;
+use PlayCode\VKPlayLiveSDK\Response\ChannelResponse;
 use PlayCode\VKPlayLiveSDK\Response\OnlineChannelsListResponse;
 use PlayCode\VKPlayLiveSDK\Response\Response;
 use PlayCode\VKPlayLiveSDK\Response\ResponseInterface;
@@ -87,9 +91,10 @@ class Client
     }
 
     /**
+     * @return ChannelDTO[]
      * @throws ClientException
      */
-    public function listChannelsOnline(int $limit, string $categoryId = '', string $categoryType = '', ?string $accessToken = null): OnlineChannelsListResponse
+    public function listChannelsOnline(int $limit, string $categoryId = '', string $categoryType = '', ?string $accessToken = null): array
     {
         $request = new OnlineChannelsListRequest(
             $this->clientId,
@@ -104,7 +109,21 @@ class Client
             throw new ClientException('Failed to refresh token', $response->getStatusCode());
         }
 
-        return OnlineChannelsListResponse::createFromResponse($response);
+        return OnlineChannelsListResponse::createFromResponse($response)->getChannels();
+    }
+
+    /**
+     * @throws ClientException
+     */
+    public function getChannel(string $channelUrl, ?string $accessToken = null): ChannelDTO
+    {
+        $request = new ChannelRequest($channelUrl, $this->clientId, $this->clientSecret, $accessToken);
+        $response = $this->sendRequest($request);
+        if (!$response->isSuccess()) {
+            throw new ClientException('Failed to refresh token', $response->getStatusCode());
+        }
+
+        return ChannelResponse::createFromResponse($response)->getChannel();
     }
 
     /**

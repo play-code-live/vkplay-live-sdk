@@ -59,3 +59,30 @@ $client->listChannelsOnline(20, categoryType: 'game');
 // It works with clientId and clientSecret, but you can use access_token
 $client->listChannelsOnline(20, accessToken: $tokenData->getAccessToken());
 ```
+
+### Channel
+
+```php
+// You can get channel data with clientId and clientSecret
+$channelInfo = $client->getChannel('play_code');
+
+// Or with access_token
+$channelInfo = $client->getChannel('play_code', $tokenData->getAccessToken);
+
+// It contains all the data about channel. Example:
+$channelInfo->getChannelInfo()->getSubscribers(); // Followers count
+$channelInfo->getChannelInfo()->getStatus(); // Current status
+
+// Socket addresses
+$channelInfo->getChannelInfo()->getWebSocketChannels()->getChat();
+
+// Owner info
+$channelInfo->getOwner()->getAvatarUrl();
+$channelInfo->getOwner()->getNick();
+$channelInfo->getOwner()->isVerifiedStreamer();
+
+// Stream info
+$channelInfo->getStreamInfo()->getTitle();
+$channelInfo->getStreamInfo()->getCategory()->getTitle();
+$channelInfo->getStreamInfo()->getCounters()->getViewers();
+```
