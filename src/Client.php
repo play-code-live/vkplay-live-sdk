@@ -7,9 +7,10 @@ namespace PlayCode\VKPlayLiveSDK;
 use GuzzleHttp\Client as HttpClient;
 use GuzzleHttp\Exception\GuzzleException;
 use PlayCode\VKPlayLiveSDK\Exception\ClientException;
+use PlayCode\VKPlayLiveSDK\Request\RefreshTokenRequest;
 use PlayCode\VKPlayLiveSDK\Request\RequestInterface;
 use PlayCode\VKPlayLiveSDK\Request\RevokeRequest;
-use PlayCode\VKPlayLiveSDK\Request\TokenRequest;
+use PlayCode\VKPlayLiveSDK\Request\AccessTokenRequest;
 use PlayCode\VKPlayLiveSDK\Response\Response;
 use PlayCode\VKPlayLiveSDK\Response\ResponseInterface;
 use PlayCode\VKPlayLiveSDK\Response\TokenResponse;
@@ -28,6 +29,7 @@ class Client
 
         $this->client = new HttpClient([
             'base_uri' => self::API_HOST,
+            'verify' => false
         ]);
     }
 
@@ -47,7 +49,7 @@ class Client
      */
     public function getAccessToken(string $code, string $redirectUri): TokenResponse
     {
-        $request = new TokenRequest($this->clientId, $this->clientSecret, $redirectUri, code: $code);
+        $request = new AccessTokenRequest($code, $this->clientId, $this->clientSecret, $redirectUri);
         $response = $this->sendRequest($request);
         if (!$response->isSuccess()) {
             throw new ClientException('Failed to get access token', $response->getStatusCode());
@@ -61,7 +63,7 @@ class Client
      */
     public function refreshToken(string $refreshToken): TokenResponse
     {
-        $request = new TokenRequest($this->clientId, $this->clientSecret, $refreshToken, TokenRequest::GRANT_TYPE_REFRESH);
+        $request = new RefreshTokenRequest($refreshToken, $this->clientId, $this->clientSecret);
         $response = $this->sendRequest($request);
         if (!$response->isSuccess()) {
             throw new ClientException('Failed to refresh token', $response->getStatusCode());
@@ -88,11 +90,17 @@ class Client
     private function sendRequest(RequestInterface $request): ResponseInterface
     {
         try {
-            $response = $this->client->request($request->getMethod(), $request->getEndpoint(), [
+            $options = [
                 'headers' => $request->getHeaders(),
-                'form_params' => $request->getFormParams(),
-                'json' => $request->getJsonParams(),
-            ]);
+            ];
+
+            if (!empty($request->getJsonParams())) {
+                $options['json'] = $request->getJsonParams();
+            } elseif (!empty($request->getFormParams())) {
+                $options['form_params'] = $request->getFormParams();
+            }
+
+            $response = $this->client->request($request->getMethod(), $request->getEndpoint(), $options);
         } catch (GuzzleException $e) {
             throw new ClientException($e->getMessage(), $e->getCode(), $e);
         }

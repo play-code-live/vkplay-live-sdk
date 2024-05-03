@@ -4,17 +4,15 @@ declare(strict_types=1);
 
 namespace PlayCode\VKPlayLiveSDK\Request;
 
-class TokenRequest implements RequestInterface
+class AccessTokenRequest implements RequestInterface
 {
-    public const GRANT_TYPE_TOKEN = 'authorization_code';
-    public const GRANT_TYPE_REFRESH = 'refresh_token';
+    private const GRANT_TYPE = 'authorization_code';
 
     public function __construct(
+        private string $code,
         private string $clientId,
         private string $clientSecret,
         private string $redirectUri,
-        private string $grantType = self::GRANT_TYPE_TOKEN,
-        private string $code = '',
     ) {
     }
 
@@ -32,7 +30,7 @@ class TokenRequest implements RequestInterface
     {
         return [
             'code' => $this->code,
-            'grant_type' => $this->grantType,
+            'grant_type' => self::GRANT_TYPE,
             'redirect_uri' => $this->redirectUri,
         ];
     }
