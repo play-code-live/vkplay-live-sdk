@@ -9,6 +9,7 @@ use GuzzleHttp\Exception\GuzzleException;
 use PlayCode\VKPlayLiveSDK\DTO\CategoryDTO;
 use PlayCode\VKPlayLiveSDK\DTO\ChannelDTO;
 use PlayCode\VKPlayLiveSDK\Exception\ClientException;
+use PlayCode\VKPlayLiveSDK\Exception\ExceptionFactory;
 use PlayCode\VKPlayLiveSDK\Request\CategoryRequest;
 use PlayCode\VKPlayLiveSDK\Request\ChannelCredentialsRequest;
 use PlayCode\VKPlayLiveSDK\Request\ChannelRequest;
@@ -250,7 +251,7 @@ class Client
 
             $response = $this->client->request($request->getMethod(), $request->getEndpoint(), $options);
         } catch (GuzzleException $e) {
-            throw new ClientException($e->getMessage(), $e->getCode(), $e);
+            throw ExceptionFactory::createException($e->getMessage(), $e->getCode());
         }
 
         return new Response($response->getBody()->getContents(), $response->getStatusCode());
