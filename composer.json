@@ -1,5 +1,5 @@
 {
-    "name": "play_code/vkplay-live-sdk",
+    "name": "play-code-live/vkplay-live-sdk",
     "type": "library",
     "autoload": {
         "psr-4": {
