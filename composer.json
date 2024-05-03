@@ -1,9 +1,9 @@
 {
-    "name": "play_code/vkplay-sdk",
+    "name": "play_code/vkplay-live-sdk",
     "type": "library",
     "autoload": {
         "psr-4": {
-            "PlayCode\\VkplaySdk\\": "src/"
+            "PlayCode\\VKPlayLiveSDK\\": "src/"
         }
     },
     "authors": [
@@ -12,5 +12,8 @@
             "email": "info@play-code.ru"
         }
     ],
-    "require": {}
+    "require": {
+        "php": ">=8.0",
+        "guzzlehttp/guzzle": "^7.8"
+    }
 }
