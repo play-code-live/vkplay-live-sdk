@@ -35,7 +35,7 @@ class Client
     private const API_HOST = 'https://apidev.live.vkplay.ru/';
     private string $clientId;
     private string $clientSecret;
-    private HttpClient $client;
+    protected HttpClient $client;
 
     public function __construct(string $clientId, string $clientSecret)
     {
