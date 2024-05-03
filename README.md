@@ -1,6 +1,6 @@
 # VKPlayLive SDK
 
-## Examples
+## Authorization
 
 ```php
 
@@ -40,4 +40,22 @@ $client->revokeToken($tokenData->getAccessToken());
 // or
 $client->revokeToken($tokenData->getRefreshToken(), RevokeRequest::HINT_REFRESH_TOKEN);
 
+```
+
+## Methods
+
+### Catalog
+
+```php
+// Limit is required
+$client->listChannelsOnline(limit: 20);
+
+// You can specify category id
+$client->listChannelsOnline(20, categoryId: '4588a9f0-b606-4827-9b6a-f2da4309c196');
+
+// Or category type
+$client->listChannelsOnline(20, categoryType: 'game');
+
+// It works with clientId and clientSecret, but you can use access_token
+$client->listChannelsOnline(20, accessToken: $tokenData->getAccessToken());
 ```
