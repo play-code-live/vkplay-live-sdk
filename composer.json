@@ -1,7 +1,14 @@
 {
     "name": "play-code-live/vkplay-live-sdk",
     "description": "Access VKPlayLive API easily with PHP SDK",
-    "licence": "MIT",
+    "keywords": [
+        "api",
+        "streaming",
+        "sdk",
+        "vkplay",
+        "vkplaylive"
+    ],
+    "license": "MIT",
     "type": "library",
     "autoload": {
         "psr-4": {
