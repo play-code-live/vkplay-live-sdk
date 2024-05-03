@@ -95,6 +95,14 @@ $category->getType();
 $category->getViewers(); // -> 0
 ```
 
+### Category Search
+
+```php
+$category = $client->searchCategory('Говорим и смотрим', limit: 20);
+// or
+$category = $client->searchCategory('Говорим и смотрим', limit: 20, accessToken: $tokenData->getAccessToken());
+```
+
 ### Channel
 
 ```php

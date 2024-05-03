@@ -4,7 +4,7 @@ namespace PlayCode\VKPlayLiveSDK\Response;
 
 use PlayCode\VKPlayLiveSDK\DTO\CategoryDTO;
 
-class OnlineCategoriesResponse extends Response
+class CategoriesResponse extends Response
 {
     /** @var CategoryDTO[] */
     private array $categories;

@@ -20,11 +20,12 @@ use PlayCode\VKPlayLiveSDK\Request\RefreshTokenRequest;
 use PlayCode\VKPlayLiveSDK\Request\RequestInterface;
 use PlayCode\VKPlayLiveSDK\Request\RevokeRequest;
 use PlayCode\VKPlayLiveSDK\Request\AccessTokenRequest;
+use PlayCode\VKPlayLiveSDK\Request\SearchCategoriesRequest;
 use PlayCode\VKPlayLiveSDK\Response\CategoryResponse;
 use PlayCode\VKPlayLiveSDK\Response\ChannelCredentialsResponse;
 use PlayCode\VKPlayLiveSDK\Response\ChannelResponse;
 use PlayCode\VKPlayLiveSDK\Response\ChannelsResponse;
-use PlayCode\VKPlayLiveSDK\Response\OnlineCategoriesResponse;
+use PlayCode\VKPlayLiveSDK\Response\CategoriesResponse;
 use PlayCode\VKPlayLiveSDK\Response\OnlineChannelsResponse;
 use PlayCode\VKPlayLiveSDK\Response\Response;
 use PlayCode\VKPlayLiveSDK\Response\ResponseInterface;
@@ -139,7 +140,7 @@ class Client
             throw new ClientException('Failed to get online categories', $response->getStatusCode());
         }
 
-        return OnlineCategoriesResponse::createFromResponse($response)->getCategories();
+        return CategoriesResponse::createFromResponse($response)->getCategories();
     }
 
     /**
@@ -155,10 +156,36 @@ class Client
         );
         $response = $this->sendRequest($request);
         if (!$response->isSuccess()) {
-            throw new ClientException('Failed to get online categories', $response->getStatusCode());
+            throw new ClientException('Failed to get category', $response->getStatusCode());
         }
 
         return CategoryResponse::createFromResponse($response)->getCategory();
+    }
+
+    /**
+     * @return CategoryDTO[]
+     * @throws ClientException
+     */
+    public function searchCategory(
+        string $query,
+        int $limit,
+        string $categoryType = '',
+        ?string $accessToken = null
+    ): array {
+        $request = new SearchCategoriesRequest(
+            $this->clientId,
+            $this->clientSecret,
+            $query,
+            $limit,
+            $categoryType,
+            $accessToken
+        );
+        $response = $this->sendRequest($request);
+        if (!$response->isSuccess()) {
+            throw new ClientException('Failed to search categories', $response->getStatusCode());
+        }
+
+        return CategoriesResponse::createFromResponse($response)->getCategories();
     }
 
     /**
