@@ -75,6 +75,26 @@ $client->listCategoriesOnline(20, categoryType: Category::TYPE_GAME);
 $client->listCategoriesOnline(20, accessToken: $tokenData->getAccessToken());
 ```
 
+### Category
+
+```php
+$category = $client->getCategory('3c6b4b27-75f2-49c4-b967-f15aa88e2038');
+// or
+$category = $client->getCategory('3c6b4b27-75f2-49c4-b967-f15aa88e2038', $tokenData->getAccessToken());
+
+// Title of the category
+$category->getTitle();
+
+// Image url
+$category->getCoverUrl();
+
+// Type of category. @see Category::class
+$category->getType();
+
+// Current amount of viewers does not arrive in the response of current method
+$category->getViewers(); // -> 0
+```
+
 ### Channel
 
 ```php

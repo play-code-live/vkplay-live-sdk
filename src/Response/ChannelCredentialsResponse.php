@@ -13,7 +13,7 @@ class ChannelCredentialsResponse extends Response
         $this->url = $data['url'] ?? '';
         $this->token = $data['token'] ?? '';
 
-        parent::__construct($body, $statusCode);
+        parent::__construct('', $statusCode);
     }
 
     public function getUrl(): string

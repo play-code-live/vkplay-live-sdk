@@ -2,7 +2,7 @@
 
 namespace PlayCode\VKPlayLiveSDK\Request;
 
-class ChannelsRequest implements RequestInterface
+class ChannelsRequest extends AppAndUserAuthRequest
 {
     private const CHANNELS_COUNT_LIMIT = 100;
 
@@ -13,6 +13,7 @@ class ChannelsRequest implements RequestInterface
         private ?string $accessToken = null,
     )
     {
+        parent::__construct($this->clientId, $this->clientSecret, $this->accessToken);
     }
 
     public function getEndpoint(): string
@@ -25,11 +26,6 @@ class ChannelsRequest implements RequestInterface
         return self::METHOD_POST;
     }
 
-    public function getFormParams(): array
-    {
-        return [];
-    }
-
     public function getJsonParams(): array
     {
         return [
@@ -38,19 +34,5 @@ class ChannelsRequest implements RequestInterface
                 array_slice($this->channelUrls, 0, self::CHANNELS_COUNT_LIMIT)
             ),
         ];
-    }
-
-    public function getHeaders(): array
-    {
-        $headers = [
-            'Content-Type' => 'application/json',
-        ];
-
-        if ($this->accessToken !== null) {
-            $headers['Authorization'] = 'Bearer ' . $this->accessToken;
-        } else {
-            $headers['Authorization'] = 'Basic ' . base64_encode($this->clientId.':'.$this->clientSecret);
-        }
-        return $headers;
     }
 }

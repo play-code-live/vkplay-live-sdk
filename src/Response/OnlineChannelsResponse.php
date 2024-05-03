@@ -16,7 +16,7 @@ class OnlineChannelsResponse extends Response
             $this->channels[] = ChannelDTO::fromArray($channel);
         }
 
-        parent::__construct($body, $statusCode);
+        parent::__construct('', $statusCode);
     }
 
     public function getChannels(): array

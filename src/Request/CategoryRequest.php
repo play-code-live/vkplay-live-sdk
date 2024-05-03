@@ -2,10 +2,10 @@
 
 namespace PlayCode\VKPlayLiveSDK\Request;
 
-class ChannelRequest extends AppAndUserAuthRequest
+class CategoryRequest extends AppAndUserAuthRequest
 {
     public function __construct(
-        private string $channelUrl,
+        private string $id,
         private string $clientId,
         private string $clientSecret,
         private ?string $accessToken = null,
@@ -13,10 +13,9 @@ class ChannelRequest extends AppAndUserAuthRequest
     {
         parent::__construct($this->clientId, $this->clientSecret, $this->accessToken);
     }
-
     public function getEndpoint(): string
     {
-        return 'v1/channel?' . http_build_query(['channel_url' => $this->channelUrl]);
+        return 'v1/category?category_id=' . $this->id;
     }
 
     public function getMethod(): string

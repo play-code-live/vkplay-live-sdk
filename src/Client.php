@@ -10,6 +10,7 @@ use GuzzleHttp\Exception\GuzzleException;
 use PlayCode\VKPlayLiveSDK\DTO\CategoryDTO;
 use PlayCode\VKPlayLiveSDK\DTO\ChannelDTO;
 use PlayCode\VKPlayLiveSDK\Exception\ClientException;
+use PlayCode\VKPlayLiveSDK\Request\CategoryRequest;
 use PlayCode\VKPlayLiveSDK\Request\ChannelCredentialsRequest;
 use PlayCode\VKPlayLiveSDK\Request\ChannelRequest;
 use PlayCode\VKPlayLiveSDK\Request\ChannelsRequest;
@@ -19,6 +20,7 @@ use PlayCode\VKPlayLiveSDK\Request\RefreshTokenRequest;
 use PlayCode\VKPlayLiveSDK\Request\RequestInterface;
 use PlayCode\VKPlayLiveSDK\Request\RevokeRequest;
 use PlayCode\VKPlayLiveSDK\Request\AccessTokenRequest;
+use PlayCode\VKPlayLiveSDK\Response\CategoryResponse;
 use PlayCode\VKPlayLiveSDK\Response\ChannelCredentialsResponse;
 use PlayCode\VKPlayLiveSDK\Response\ChannelResponse;
 use PlayCode\VKPlayLiveSDK\Response\ChannelsResponse;
@@ -138,6 +140,25 @@ class Client
         }
 
         return OnlineCategoriesResponse::createFromResponse($response)->getCategories();
+    }
+
+    /**
+     * @throws ClientException
+     */
+    public function getCategory(string $categoryId, ?string $accessToken = null): CategoryDTO
+    {
+        $request = new CategoryRequest(
+            $categoryId,
+            $this->clientId,
+            $this->clientSecret,
+            $accessToken
+        );
+        $response = $this->sendRequest($request);
+        if (!$response->isSuccess()) {
+            throw new ClientException('Failed to get online categories', $response->getStatusCode());
+        }
+
+        return CategoryResponse::createFromResponse($response)->getCategory();
     }
 
     /**

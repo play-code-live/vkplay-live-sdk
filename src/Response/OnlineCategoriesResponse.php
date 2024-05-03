@@ -16,7 +16,7 @@ class OnlineCategoriesResponse extends Response
             $this->categories[] = CategoryDTO::fromArray($category);
         }
 
-        parent::__construct($body, $statusCode);
+        parent::__construct('', $statusCode);
     }
 
     public function getCategories(): array

@@ -13,7 +13,7 @@ class ChannelResponse extends Response
         $data = json_decode($body, true);
         $this->channel = ChannelDTO::fromArray($data['data'] ?? []);
 
-        parent::__construct($body, $statusCode);
+        parent::__construct('', $statusCode);
     }
 
     public function getChannel(): ChannelDTO

@@ -16,7 +16,7 @@ class ChannelsResponse extends Response
         $data = json_decode($body, true)['data'] ?? [];
         $this->channels = array_map(fn($channel) => ChannelDTO::fromArray($channel), $data['channels'] ?? []);
 
-        parent::__construct($body, $statusCode);
+        parent::__construct('', $statusCode);
     }
 
     /**
