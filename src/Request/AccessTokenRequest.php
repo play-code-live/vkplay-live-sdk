@@ -18,7 +18,7 @@ class AccessTokenRequest implements RequestInterface
 
     public function getEndpoint(): string
     {
-        return 'oauth/server/token';
+        return 'https://api.vkplay.live/oauth/server/token';
     }
 
     public function getMethod(): string

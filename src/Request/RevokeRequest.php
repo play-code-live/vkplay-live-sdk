@@ -19,7 +19,7 @@ class RevokeRequest implements RequestInterface
     }
     public function getEndpoint(): string
     {
-        return 'oauth/server/revoke';
+        return 'https://api.vkplay.live/oauth/server/revoke';
     }
 
     public function getMethod(): string

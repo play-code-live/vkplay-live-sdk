@@ -19,7 +19,7 @@ class TokenResponse extends Response
         $this->expiresIn = $data['expires_in'] ?? 0;
         $this->tokenType = $data['token_type'] ?? '';
         
-        parent::__construct($body, $statusCode);
+        parent::__construct("", $statusCode);
     }
 
     public function getAccessToken(): string
@@ -40,11 +40,6 @@ class TokenResponse extends Response
     public function getTokenType(): string
     {
         return $this->tokenType;
-    }
-
-    public static function createFromResponse(ResponseInterface $response): self
-    {
-        return new self($response->getBody(), $response->getStatusCode());
     }
 }
 

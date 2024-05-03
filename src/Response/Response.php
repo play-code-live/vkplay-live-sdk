@@ -29,5 +29,10 @@ class Response implements ResponseInterface
     {
         return $this->getStatusCode() >= 200 && $this->getStatusCode() < 300;
     }
+
+    public static function createFromResponse(ResponseInterface $response): static
+    {
+        return new static($response->getBody(), $response->getStatusCode());
+    }
 }
 

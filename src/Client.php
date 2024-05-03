@@ -7,17 +7,19 @@ namespace PlayCode\VKPlayLiveSDK;
 use GuzzleHttp\Client as HttpClient;
 use GuzzleHttp\Exception\GuzzleException;
 use PlayCode\VKPlayLiveSDK\Exception\ClientException;
+use PlayCode\VKPlayLiveSDK\Request\OnlineChannelsListRequest;
 use PlayCode\VKPlayLiveSDK\Request\RefreshTokenRequest;
 use PlayCode\VKPlayLiveSDK\Request\RequestInterface;
 use PlayCode\VKPlayLiveSDK\Request\RevokeRequest;
 use PlayCode\VKPlayLiveSDK\Request\AccessTokenRequest;
+use PlayCode\VKPlayLiveSDK\Response\OnlineChannelsListResponse;
 use PlayCode\VKPlayLiveSDK\Response\Response;
 use PlayCode\VKPlayLiveSDK\Response\ResponseInterface;
 use PlayCode\VKPlayLiveSDK\Response\TokenResponse;
 
 class Client
 {
-    private const API_HOST = 'https://api.vkplay.live/';
+    private const API_HOST = 'https://apidev.live.vkplay.ru/';
     private string $clientId;
     private string $clientSecret;
     private HttpClient $client;
@@ -82,6 +84,27 @@ class Client
         if (!$response->isSuccess()) {
             throw new ClientException('Failed to refresh token', $response->getStatusCode());
         }
+    }
+
+    /**
+     * @throws ClientException
+     */
+    public function listChannelsOnline(int $limit, string $categoryId = '', string $categoryType = '', ?string $accessToken = null): OnlineChannelsListResponse
+    {
+        $request = new OnlineChannelsListRequest(
+            $this->clientId,
+            $this->clientSecret,
+            $limit,
+            $categoryId,
+            $categoryType,
+            $accessToken
+        );
+        $response = $this->sendRequest($request);
+        if (!$response->isSuccess()) {
+            throw new ClientException('Failed to refresh token', $response->getStatusCode());
+        }
+
+        return OnlineChannelsListResponse::createFromResponse($response);
     }
 
     /**
