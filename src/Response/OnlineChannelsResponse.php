@@ -4,7 +4,7 @@ namespace PlayCode\VKPlayLiveSDK\Response;
 
 use PlayCode\VKPlayLiveSDK\DTO\ChannelDTO;
 
-class OnlineChannelsListResponse extends Response
+class OnlineChannelsResponse extends Response
 {
     /** @var ChannelDTO[] */
     private array $channels;

@@ -7,12 +7,14 @@ namespace PlayCode\VKPlayLiveSDK;
 use Grpc\Channel;
 use GuzzleHttp\Client as HttpClient;
 use GuzzleHttp\Exception\GuzzleException;
+use PlayCode\VKPlayLiveSDK\DTO\CategoryDTO;
 use PlayCode\VKPlayLiveSDK\DTO\ChannelDTO;
 use PlayCode\VKPlayLiveSDK\Exception\ClientException;
 use PlayCode\VKPlayLiveSDK\Request\ChannelCredentialsRequest;
 use PlayCode\VKPlayLiveSDK\Request\ChannelRequest;
 use PlayCode\VKPlayLiveSDK\Request\ChannelsRequest;
-use PlayCode\VKPlayLiveSDK\Request\OnlineChannelsListRequest;
+use PlayCode\VKPlayLiveSDK\Request\OnlineCategoriesRequest;
+use PlayCode\VKPlayLiveSDK\Request\OnlineChannelsRequest;
 use PlayCode\VKPlayLiveSDK\Request\RefreshTokenRequest;
 use PlayCode\VKPlayLiveSDK\Request\RequestInterface;
 use PlayCode\VKPlayLiveSDK\Request\RevokeRequest;
@@ -20,7 +22,8 @@ use PlayCode\VKPlayLiveSDK\Request\AccessTokenRequest;
 use PlayCode\VKPlayLiveSDK\Response\ChannelCredentialsResponse;
 use PlayCode\VKPlayLiveSDK\Response\ChannelResponse;
 use PlayCode\VKPlayLiveSDK\Response\ChannelsResponse;
-use PlayCode\VKPlayLiveSDK\Response\OnlineChannelsListResponse;
+use PlayCode\VKPlayLiveSDK\Response\OnlineCategoriesResponse;
+use PlayCode\VKPlayLiveSDK\Response\OnlineChannelsResponse;
 use PlayCode\VKPlayLiveSDK\Response\Response;
 use PlayCode\VKPlayLiveSDK\Response\ResponseInterface;
 use PlayCode\VKPlayLiveSDK\Response\TokenResponse;
@@ -100,7 +103,7 @@ class Client
      */
     public function listChannelsOnline(int $limit, string $categoryId = '', string $categoryType = '', ?string $accessToken = null): array
     {
-        $request = new OnlineChannelsListRequest(
+        $request = new OnlineChannelsRequest(
             $this->clientId,
             $this->clientSecret,
             $limit,
@@ -113,7 +116,28 @@ class Client
             throw new ClientException('Failed to get online channels', $response->getStatusCode());
         }
 
-        return OnlineChannelsListResponse::createFromResponse($response)->getChannels();
+        return OnlineChannelsResponse::createFromResponse($response)->getChannels();
+    }
+
+    /**
+     * @return CategoryDTO[]
+     * @throws ClientException
+     */
+    public function listCategoriesOnline(int $limit, string $categoryType = '', ?string $accessToken = null): array
+    {
+        $request = new OnlineCategoriesRequest(
+            $this->clientId,
+            $this->clientSecret,
+            $limit,
+            $categoryType,
+            $accessToken
+        );
+        $response = $this->sendRequest($request);
+        if (!$response->isSuccess()) {
+            throw new ClientException('Failed to get online categories', $response->getStatusCode());
+        }
+
+        return OnlineCategoriesResponse::createFromResponse($response)->getCategories();
     }
 
     /**

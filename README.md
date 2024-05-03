@@ -46,18 +46,33 @@ $client->revokeToken($tokenData->getRefreshToken(), RevokeRequest::HINT_REFRESH_
 
 ### Catalog
 
+#### Channels Online
+
 ```php
-// Limit is required
+// Limit is required and cannot be more than 200
 $client->listChannelsOnline(limit: 20);
 
 // You can specify category id
 $client->listChannelsOnline(20, categoryId: '4588a9f0-b606-4827-9b6a-f2da4309c196');
 
 // Or category type
-$client->listChannelsOnline(20, categoryType: 'game');
+$client->listChannelsOnline(20, categoryType: Category::TYPE_GAME);
 
 // It works with clientId and clientSecret, but you can use access_token
 $client->listChannelsOnline(20, accessToken: $tokenData->getAccessToken());
+```
+
+#### Categories Online
+
+```php
+// Limit is required and cannot be more than 200
+$client->listCategoriesOnline(limit: 20);
+
+// You can specify category type
+$client->listCategoriesOnline(20, categoryType: Category::TYPE_GAME);
+
+// It works with clientId and clientSecret, but you can use access_token
+$client->listCategoriesOnline(20, accessToken: $tokenData->getAccessToken());
 ```
 
 ### Channel

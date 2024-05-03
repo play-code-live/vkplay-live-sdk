@@ -6,12 +6,12 @@ namespace PlayCode\VKPlayLiveSDK\DTO;
 
 class CategoryDTO
 {
-    public const TYPE_GAME = 'game';
-
     public function __construct(
         private string $id,
         private string $title,
-        private string $type
+        private string $type,
+        private string $coverUrl,
+        private int $viewers,
     )
     {
     }
@@ -31,12 +31,24 @@ class CategoryDTO
         return $this->type;
     }
 
+    public function getCoverUrl(): string
+    {
+        return $this->coverUrl;
+    }
+
+    public function getViewers(): int
+    {
+        return $this->viewers;
+    }
+
     public static function fromArray(array $data): self
     {
         return new self(
             $data['id'] ?? '',
             $data['title'] ?? '',
-            $data['type'] ?? ''
+            $data['type'] ?? '',
+            $data['cover_url'] ?? '',
+            $data['counters']['viewers'] ?? 0,
         );
     }
 }

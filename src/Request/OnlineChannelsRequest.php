@@ -2,8 +2,9 @@
 
 namespace PlayCode\VKPlayLiveSDK\Request;
 
-class OnlineChannelsListRequest extends ChannelRequest
+class OnlineChannelsRequest extends ChannelRequest
 {
+    private const LIMIT_MAX = 200;
     public function __construct(
         private string $clientId,
         private string $clientSecret,
@@ -21,10 +22,10 @@ class OnlineChannelsListRequest extends ChannelRequest
         return 'v1/catalog/online_channels?' . http_build_query($this->getQuery());
     }
 
-    private function getQuery(): array
+    protected function getQuery(): array
     {
         $query = [
-            'limit' => $this->limit,
+            'limit' => min($this->limit, self::LIMIT_MAX),
         ];
         if (!empty($this->categoryId)) {
             $query['category_id'] = $this->categoryId;
