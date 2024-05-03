@@ -149,6 +149,18 @@ class ClientTest extends TestCase
         ));
     }
 
+    #[DataProvider('listChannelsProvider')]
+    public function testGetChannelsOnline(Client $c, array $propValues, ?string $exception = null): void
+    {
+        $this->clientMethodCallTestRecursive(new MethodCallStruct(
+            'getChannels',
+            [['play_code', 'some_access_token']],
+            $c,
+            $propValues,
+            $exception
+        ));
+    }
+
     public static function listChannelsProvider(): array
     {
         return [
