@@ -25,11 +25,6 @@ class Response implements ResponseInterface
         return $this->statusCode;
     }
 
-    public function isSuccess(): bool
-    {
-        return $this->getStatusCode() >= 200 && $this->getStatusCode() < 300;
-    }
-
     public static function createFromResponse(ResponseInterface $response): static
     {
         return new static($response->getBody(), $response->getStatusCode());

@@ -7,6 +7,7 @@ namespace PlayCode\VKPlayLiveSDK;
 use GuzzleHttp\Client as HttpClient;
 use GuzzleHttp\Exception\GuzzleException;
 use PlayCode\VKPlayLiveSDK\DTO\CategoryDTO;
+use PlayCode\VKPlayLiveSDK\DTO\CategoryWithCoverDTO;
 use PlayCode\VKPlayLiveSDK\DTO\ChannelDTO;
 use PlayCode\VKPlayLiveSDK\Exception\ClientException;
 use PlayCode\VKPlayLiveSDK\Exception\ExceptionFactory;
@@ -66,12 +67,8 @@ class Client
     public function getAccessToken(string $code, string $redirectUri): TokenResponse
     {
         $request = new AccessTokenRequest($code, $this->clientId, $this->clientSecret, $redirectUri);
-        $response = $this->sendRequest($request);
-        if (!$response->isSuccess()) {
-            throw new ClientException('Failed to get access token', $response->getStatusCode());
-        }
 
-        return TokenResponse::createFromResponse($response);
+        return TokenResponse::createFromResponse($this->sendRequest($request));
     }
 
     /**
@@ -80,12 +77,8 @@ class Client
     public function refreshToken(string $refreshToken): TokenResponse
     {
         $request = new RefreshTokenRequest($refreshToken, $this->clientId, $this->clientSecret);
-        $response = $this->sendRequest($request);
-        if (!$response->isSuccess()) {
-            throw new ClientException('Failed to refresh token', $response->getStatusCode());
-        }
 
-        return TokenResponse::createFromResponse($response);
+        return TokenResponse::createFromResponse($this->sendRequest($request));
     }
 
     /**
@@ -94,10 +87,7 @@ class Client
     public function revokeToken(string $token, string $tokenTypeHint = RevokeRequest::HINT_ACCESS_TOKEN): void
     {
         $request = new RevokeRequest($this->clientId, $this->clientSecret, $token, $tokenTypeHint);
-        $response = $this->sendRequest($request);
-        if (!$response->isSuccess()) {
-            throw new ClientException('Failed to refresh token', $response->getStatusCode());
-        }
+        $this->sendRequest($request);
     }
 
     /**
@@ -114,12 +104,8 @@ class Client
             $categoryType,
             $accessToken
         );
-        $response = $this->sendRequest($request);
-        if (!$response->isSuccess()) {
-            throw new ClientException('Failed to get online channels', $response->getStatusCode());
-        }
 
-        return OnlineChannelsResponse::createFromResponse($response)->channels;
+        return OnlineChannelsResponse::createFromResponse($this->sendRequest($request))->channels;
     }
 
     /**
@@ -135,18 +121,14 @@ class Client
             $categoryType,
             $accessToken
         );
-        $response = $this->sendRequest($request);
-        if (!$response->isSuccess()) {
-            throw new ClientException('Failed to get online categories', $response->getStatusCode());
-        }
 
-        return CategoriesResponse::createFromResponse($response)->categories;
+        return CategoriesResponse::createFromResponse($this->sendRequest($request))->categories;
     }
 
     /**
      * @throws ClientException
      */
-    public function getCategory(string $categoryId, ?string $accessToken = null): CategoryDTO
+    public function getCategory(string $categoryId, ?string $accessToken = null): CategoryWithCoverDTO
     {
         $request = new CategoryRequest(
             $categoryId,
@@ -154,12 +136,8 @@ class Client
             $this->clientSecret,
             $accessToken
         );
-        $response = $this->sendRequest($request);
-        if (!$response->isSuccess()) {
-            throw new ClientException('Failed to get category', $response->getStatusCode());
-        }
 
-        return CategoryResponse::createFromResponse($response)->category;
+        return CategoryResponse::createFromResponse($this->sendRequest($request))->category;
     }
 
     /**
@@ -180,12 +158,8 @@ class Client
             $limit,
             $accessToken
         );
-        $response = $this->sendRequest($request);
-        if (!$response->isSuccess()) {
-            throw new ClientException('Failed to search categories', $response->getStatusCode());
-        }
 
-        return CategoriesResponse::createFromResponse($response)->categories;
+        return CategoriesResponse::createFromResponse($this->sendRequest($request))->categories;
     }
 
     /**
@@ -194,12 +168,8 @@ class Client
     public function getChannel(string $channelUrl, ?string $accessToken = null): ChannelDTO
     {
         $request = new ChannelRequest($channelUrl, $this->clientId, $this->clientSecret, $accessToken);
-        $response = $this->sendRequest($request);
-        if (!$response->isSuccess()) {
-            throw new ClientException('Failed to get channel', $response->getStatusCode());
-        }
 
-        return ChannelResponse::createFromResponse($response)->channel;
+        return ChannelResponse::createFromResponse($this->sendRequest($request))->channel;
     }
 
     /**
@@ -211,12 +181,8 @@ class Client
     public function getChannels(array $channelUrls, ?string $accessToken = null): array
     {
         $request = new ChannelsRequest($channelUrls, $this->clientId, $this->clientSecret, $accessToken);
-        $response = $this->sendRequest($request);
-        if (!$response->isSuccess()) {
-            throw new ClientException('Failed to get channels', $response->getStatusCode());
-        }
 
-        return ChannelsResponse::createFromResponse($response)->channels;
+        return ChannelsResponse::createFromResponse($this->sendRequest($request))->channels;
     }
 
     /**
@@ -225,12 +191,8 @@ class Client
     public function getChannelCredentials(string $channelUrl, string $accessToken): ChannelCredentialsResponse
     {
         $request = new ChannelCredentialsRequest($channelUrl, $accessToken);
-        $response = $this->sendRequest($request);
-        if (!$response->isSuccess()) {
-            throw new ClientException('Failed to get channel credentials', $response->getStatusCode());
-        }
 
-        return ChannelCredentialsResponse::createFromResponse($response);
+        return ChannelCredentialsResponse::createFromResponse($this->sendRequest($request));
     }
 
     /**

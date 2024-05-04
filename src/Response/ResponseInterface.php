@@ -8,5 +8,4 @@ interface ResponseInterface
 {
     public function getBody(): string;
     public function getStatusCode(): int;
-    public function isSuccess(): bool;
 }

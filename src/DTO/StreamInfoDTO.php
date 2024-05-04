@@ -15,6 +15,7 @@ class StreamInfoDTO
         public readonly SmallCategoryDTO $category,
         public readonly array $reactions,
         public readonly CountersDTO $counters,
+        public readonly string $videoId,
     )
     {
     }
@@ -30,6 +31,7 @@ class StreamInfoDTO
             SmallCategoryDTO::fromArray($data['category'] ?? []),
             array_map(fn($r) => ReactionDTO::fromArray($r ?? []), $data['reactions'] ?? []),
             CountersDTO::fromArray($data['counters'] ?? []),
+            $data['video_id'] ?? '0',
         );
     }
 }

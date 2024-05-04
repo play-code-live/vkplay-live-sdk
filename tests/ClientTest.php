@@ -6,13 +6,20 @@ namespace PlayCode\Tests\VKPlayLiveSDK;
 
 use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestCase;
 use PlayCode\VKPlayLiveSDK\Category;
 use PlayCode\VKPlayLiveSDK\Client;
 use PlayCode\VKPlayLiveSDK\Exception\ClientException;
+use PlayCode\VKPlayLiveSDK\Exception\ForbiddenException;
+use PlayCode\VKPlayLiveSDK\Exception\InternalServerErrorException;
+use PlayCode\VKPlayLiveSDK\Exception\InvalidParamException;
+use PlayCode\VKPlayLiveSDK\Exception\NotFoundException;
 use PlayCode\VKPlayLiveSDK\Exception\ParseJsonException;
 use PlayCode\VKPlayLiveSDK\Exception\RateLimitExceededException;
+use PlayCode\VKPlayLiveSDK\Exception\ServiceUnavailableException;
 use PlayCode\VKPlayLiveSDK\Exception\UnauthorizedException;
+use PlayCode\VKPlayLiveSDK\Exception\UnprocessableEntityException;
 use PlayCode\VKPlayLiveSDK\Scope;
 
 class ClientTest extends TestCase
@@ -92,14 +99,7 @@ class ClientTest extends TestCase
                     'tokenType' => 'Bearer',
                 ]
             ],
-            'bad json' => [
-                new ClientExtended([
-                    new Response(200, [], 'ok'),
-                ]),
-                [],
-                ParseJsonException::class
-            ],
-            ...self::getDefaultExceptionCases()
+            ...self::getDefaultExceptionCases(),
         ];
     }
 
@@ -124,7 +124,7 @@ class ClientTest extends TestCase
                 ]),
                 []
             ],
-            ...self::getDefaultExceptionCases()
+            ...self::getDefaultExceptionCases(false),
         ];
     }
 
@@ -133,7 +133,7 @@ class ClientTest extends TestCase
     {
         $this->clientMethodCallTestRecursive(new MethodCallStruct(
             'listChannelsOnline',
-            [20],
+            [20, 'cat_id', Category::TYPE_IRL],
             $c,
             $propValues,
             $exception
@@ -141,7 +141,7 @@ class ClientTest extends TestCase
     }
 
     #[DataProvider('listChannelsProvider')]
-    public function testGetChannelsOnline(Client $c, array $propValues, ?string $exception = null): void
+    public function testGetChannels(Client $c, array $propValues, ?string $exception = null): void
     {
         $this->clientMethodCallTestRecursive(new MethodCallStruct(
             'getChannels',
@@ -157,7 +157,7 @@ class ClientTest extends TestCase
         return [
             'success' => [
                 new ClientExtended([
-                    new Response(200, [], '{"data":{"channels":[{"channel":{"url":"play_code","cover_url":"https://test.url/image.png","status":"online","web_socket_channels":{"chat":"chat_socket","private_chat":"private_chat_socket","info":"info_socket","private_info":"private_info_socket","channel_points":"channel_points_socket","private_channel_points":"private_channel_points_socket","limited_chat":"limited_chat_socket","private_limited_chat":"private_limited_chat_socket"},"counters":{"subscribers":128}},"owner":{"id":1234,"nick":"play_code","nick_color":8,"avatar_url":"https://test.url/avatar.png","is_verified_streamer":true},"stream":{"id":"123e4567-e89b-12d3-a456-426655440000","title":"Тестовая трансляция","started_at":1694596420324,"ended_at":1694598320456,"preview_url":"https://test.url/preview.png","category":{"id":"123e4567-e89b-12d3-a456-665544420000","title":"World of Warcraft","type":"game"},"reactions":[{"count":123,"type":"heart"}],"counters":{"viewers":512,"views":1024}}}]}}'),
+                    new Response(200, [], '{"data":{"channels":[{"channel":{"url":"play_code","cover_url":"https://test.url/image.png","status":"online","web_socket_channels":{"chat":"chat_socket","private_chat":"private_chat_socket","info":"info_socket","private_info":"private_info_socket","channel_points":"channel_points_socket","private_channel_points":"private_channel_points_socket","limited_chat":"limited_chat_socket","limited_private_chat":"private_limited_chat_socket"},"counters":{"subscribers":128}},"owner":{"id":1234,"nick":"play_code","nick_color":8,"avatar_url":"https://test.url/avatar.png","is_verified_streamer":true},"stream":{"id":"123e4567-e89b-12d3-a456-426655440000","title":"Тестовая трансляция","started_at":1694596420324,"ended_at":1694598320456,"preview_url":"https://test.url/preview.png","category":{"id":"123e4567-e89b-12d3-a456-665544420000","title":"World of Warcraft","type":"game"},"reactions":[{"count":123,"type":"heart"}],"counters":{"viewers":512,"views":1024}}}]}}'),
                 ]),
                 [
                     [
@@ -203,14 +203,7 @@ class ClientTest extends TestCase
                     ]
                 ],
             ],
-            'bad json' => [
-                new ClientExtended([
-                    new Response(200, [], 'ok'),
-                ]),
-                [],
-                ParseJsonException::class
-            ],
-            ...self::getDefaultExceptionCases()
+            ...self::getDefaultExceptionCases(),
         ];
     }
 
@@ -255,26 +248,127 @@ class ClientTest extends TestCase
                     ]
                 ]
             ],
-            'bad json' => [
-                new ClientExtended([
-                    new Response(200, [], 'ok'),
-                ]),
-                [],
-                ParseJsonException::class
-            ],
-            ...self::getDefaultExceptionCases()
+            ...self::getDefaultExceptionCases(),
         ];
     }
 
-    private static function getDefaultExceptionCases(): array
+    #[DataProvider('getCategoryProvider')]
+    public function testGetCategory(Client $c, array $propValues, ?string $exception = null): void
+    {
+        $this->clientMethodCallTest(new MethodCallStruct(
+            'getCategory',
+            ['category_id', 'some_access_token'],
+            $c,
+            $propValues,
+            $exception
+        ));
+    }
+
+    public static function getCategoryProvider(): array
     {
         return [
-            'internal error' => [
+            'success' => [
                 new ClientExtended([
-                    new Response(400, [], '{}'),
+                    new Response(200, [], '{"data":{"category":{"id":"cat_id","title":"Говорим и смотрим","cover_url":"https://test.url/cover.png","type":"irl"}}}')
+                ]),
+                [
+                    'id' => 'cat_id',
+                    'title' => 'Говорим и смотрим',
+                    'coverUrl' => 'https://test.url/cover.png',
+                    'type' => 'irl',
+                ]
+            ],
+            ...self::getDefaultExceptionCases(),
+        ];
+    }
+
+    #[DataProvider('getChannelProvider')]
+    public function testGetChannel(Client $c, array $propValues, ?string $exception = null): void
+    {
+        $this->clientMethodCallTestRecursive(new MethodCallStruct(
+            'getChannel',
+            ['play_code', 'some_access_token'],
+            $c,
+            $propValues,
+            $exception
+        ));
+    }
+
+    public static function getChannelProvider(): array
+    {
+        return [
+            'success' => [
+                new ClientExtended([
+                    new Response(200, [], '{"data":{"channel":{"url":"play_code","cover_url":"","web_socket_channels":{"chat":"chat_socket","private_chat":"private_chat_socket","info":"info_socket","private_info":"private_info_socket","channel_points":"cp_socket","private_channel_points":"private_cp_socket","limited_chat":"lim_chat_socket","limited_private_chat":"private_lim_chat_socket"},"status":"offline","counters":{"subscribers":140}},"owner":{"avatar_url":"https://test.url/avatar.png","nick":"play_code","nick_color":15,"id":9671656,"is_verified_streamer":false},"stream":{"id":"stream_id","title":"Это просто мок","started_at":2,"ended_at":6,"counters":{"viewers":1,"views":10},"reactions":[],"category":{"title":"Разработка игр и ПО","type":"irl","id":"5c76243f-94ba-42d4-bc4f-b80ce868697a"},"preview_url":"","source_urls":[],"video_id":"0"}}}'),
+                ]),
+                [
+                    'channelInfo' => [
+                        'url' => 'play_code',
+                        'coverUrl' => '',
+                        'webSocketChannels' => [
+                            'chat' => 'chat_socket',
+                            'privateChat' => 'private_chat_socket',
+                            'info' => 'info_socket',
+                            'privateInfo' => 'private_info_socket',
+                            'channelPoints' => 'cp_socket',
+                            'privateChannelPoints' => 'private_cp_socket',
+                            'limitedChat' => 'lim_chat_socket',
+                            'privateLimitedChat' => 'private_lim_chat_socket',
+                        ],
+                        'status' => 'offline',
+                        'subscribers' => 140,
+                    ],
+                    'owner' => [
+                        'avatarUrl' => 'https://test.url/avatar.png',
+                        'nick' => 'play_code',
+                        'nickColor' => '15',
+                        'id' => 9671656,
+                        'isVerifiedStreamer' => false,
+                    ],
+                    'streamInfo' => [
+                        'id' => 'stream_id',
+                        'title' => 'Это просто мок',
+                        'startedAt' => 2,
+                        'endedAt' => 6,
+                        'counters' => ['viewers' => 1, 'views' => 10],
+                        'reactions' => [],
+                        'category' => [
+                            'title' => 'Разработка игр и ПО',
+                            'type' => 'irl',
+                            'id' => '5c76243f-94ba-42d4-bc4f-b80ce868697a'
+                        ],
+                        'previewUrl' => '',
+                        'videoId' => '0'
+                    ]
+                ],
+            ],
+            ...self::getDefaultExceptionCases(),
+        ];
+    }
+
+    private static function getDefaultExceptionCases(bool $withJsonError = true): array
+    {
+        return [
+            'forbidden' => [
+                new ClientExtended([
+                    new Response(403, [], '{"error":"forbidden"}'),
                 ]),
                 [],
-                ClientException::class,
+                ForbiddenException::class
+            ],
+            'internal error' => [
+                new ClientExtended([
+                    new Response(500, [], '{"error":"internal error"}'),
+                ]),
+                [],
+                InternalServerErrorException::class,
+            ],
+            'bad request' => [
+                new ClientExtended([
+                    new Response(400, [], '{"error":"bad request"}'),
+                ]),
+                [],
+                InvalidParamException::class,
             ],
             'token expired' => [
                 new ClientExtended([
@@ -290,7 +384,43 @@ class ClientTest extends TestCase
                 [],
                 RateLimitExceededException::class
             ],
-        ];
+            'not found' => [
+                new ClientExtended([
+                    new Response(404, [], '{"error":"not found"}'),
+                ]),
+                [],
+                NotFoundException::class
+            ],
+            'service unavailable' => [
+                new ClientExtended([
+                    new Response(503, [], '{"error":"service unavailable"}'),
+                ]),
+                [],
+                ServiceUnavailableException::class
+            ],
+            'unknown error' => [
+                new ClientExtended([
+                    new Response(418, [], '{"error":"I am teapot"}'),
+                ]),
+                [],
+                ClientException::class
+            ],
+            'bad entity' => [
+                new ClientExtended([
+                    new Response(422, [], '{"error":"unprocessable entity"}'),
+                ]),
+                [],
+                UnprocessableEntityException::class
+            ]
+        ] + (!$withJsonError ? [] : [
+            'bad json' => [
+                new ClientExtended([
+                    new Response(200, [], 'ok'),
+                ]),
+                [],
+                ParseJsonException::class
+    ],
+        ]);
     }
 
     private function clientMethodCallTestRecursive(MethodCallStruct $params): void
@@ -300,7 +430,6 @@ class ClientTest extends TestCase
         }
 
         $result = $params->client->{$params->method}(...$params->args);
-        $this->assertCount(count($params->expectedProperties), $result);
 
         if ($params->expectedExceptionClass == null && empty($params->expectedProperties)) {
             $this->assertEmpty($result);
@@ -314,7 +443,14 @@ class ClientTest extends TestCase
     {
         foreach ($expected as $key => $value) {
             if (is_array($value)) {
-                $this->checkObjPropertiesRecursive(is_array($obj) ? $obj[$key] : $obj->{$key}, $value);
+                try {
+                    $this->checkObjPropertiesRecursive(is_array($obj) ? $obj[$key] : $obj->{$key}, $value);
+                } catch (ExpectationFailedException $e) {
+                    throw $e;
+                } catch (\Throwable $e) {
+                    $this->fail(sprintf("Error checking key '%s': %s", $key, $e->getMessage()));
+                }
+
                 continue;
             }
 

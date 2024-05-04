@@ -29,7 +29,7 @@ class WebSocketChannelsDTO
             $data['channel_points'] ?? '',
             $data['private_channel_points'] ?? '',
             $data['limited_chat'] ?? '',
-            $data['private_limited_chat'] ?? ''
+            $data['limited_private_chat'] ?? ''
         );
     }
 }
