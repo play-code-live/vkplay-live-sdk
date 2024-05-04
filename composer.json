@@ -37,6 +37,6 @@
         "phpunit/phpunit": "^10.5"
     },
     "scripts": {
-        "test": "vendor/bin/phpunit tests/"
+        "test": "vendor/bin/phpunit --log-junit reports/unitreport.xml --coverage-clover reports/clover.xml tests/"
     }
 }

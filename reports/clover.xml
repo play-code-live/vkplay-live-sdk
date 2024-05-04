@@ -1,0 +1,649 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1714785479">
+  <project timestamp="1714785479">
+    <file name="C:\Users\Elijah\Documents\Projects\play_code\vkplay-sdk\src\Category.php">
+      <class name="PlayCode\VKPlayLiveSDK\Category" namespace="global">
+        <metrics complexity="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+      </class>
+      <metrics loc="11" ncloc="11" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+    </file>
+    <file name="C:\Users\Elijah\Documents\Projects\play_code\vkplay-sdk\src\Client.php">
+      <class name="PlayCode\VKPlayLiveSDK\Client" namespace="global">
+        <metrics complexity="16" methods="13" coveredmethods="13" conditionals="0" coveredconditionals="0" statements="69" coveredstatements="69" elements="82" coveredelements="82"/>
+      </class>
+      <line num="42" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="3"/>
+      <line num="44" type="stmt" count="3"/>
+      <line num="45" type="stmt" count="3"/>
+      <line num="47" type="stmt" count="3"/>
+      <line num="48" type="stmt" count="3"/>
+      <line num="49" type="stmt" count="3"/>
+      <line num="50" type="stmt" count="3"/>
+      <line num="53" type="method" name="getAuthLink" visibility="public" complexity="1" crap="1" count="3"/>
+      <line num="55" type="stmt" count="3"/>
+      <line num="56" type="stmt" count="3"/>
+      <line num="57" type="stmt" count="3"/>
+      <line num="58" type="stmt" count="3"/>
+      <line num="59" type="stmt" count="3"/>
+      <line num="60" type="stmt" count="3"/>
+      <line num="61" type="stmt" count="3"/>
+      <line num="67" type="method" name="getAccessToken" visibility="public" complexity="1" crap="1" count="11"/>
+      <line num="69" type="stmt" count="11"/>
+      <line num="71" type="stmt" count="11"/>
+      <line num="77" type="method" name="refreshToken" visibility="public" complexity="1" crap="1" count="11"/>
+      <line num="79" type="stmt" count="11"/>
+      <line num="81" type="stmt" count="11"/>
+      <line num="87" type="method" name="revokeToken" visibility="public" complexity="1" crap="1" count="10"/>
+      <line num="89" type="stmt" count="10"/>
+      <line num="90" type="stmt" count="10"/>
+      <line num="97" type="method" name="listChannelsOnline" visibility="public" complexity="1" crap="1" count="11"/>
+      <line num="99" type="stmt" count="11"/>
+      <line num="100" type="stmt" count="11"/>
+      <line num="101" type="stmt" count="11"/>
+      <line num="102" type="stmt" count="11"/>
+      <line num="103" type="stmt" count="11"/>
+      <line num="104" type="stmt" count="11"/>
+      <line num="105" type="stmt" count="11"/>
+      <line num="106" type="stmt" count="11"/>
+      <line num="108" type="stmt" count="11"/>
+      <line num="115" type="method" name="listCategoriesOnline" visibility="public" complexity="1" crap="1" count="11"/>
+      <line num="117" type="stmt" count="11"/>
+      <line num="118" type="stmt" count="11"/>
+      <line num="119" type="stmt" count="11"/>
+      <line num="120" type="stmt" count="11"/>
+      <line num="121" type="stmt" count="11"/>
+      <line num="122" type="stmt" count="11"/>
+      <line num="123" type="stmt" count="11"/>
+      <line num="125" type="stmt" count="11"/>
+      <line num="131" type="method" name="getCategory" visibility="public" complexity="1" crap="1" count="11"/>
+      <line num="133" type="stmt" count="11"/>
+      <line num="134" type="stmt" count="11"/>
+      <line num="135" type="stmt" count="11"/>
+      <line num="136" type="stmt" count="11"/>
+      <line num="137" type="stmt" count="11"/>
+      <line num="138" type="stmt" count="11"/>
+      <line num="140" type="stmt" count="11"/>
+      <line num="147" type="method" name="searchCategory" visibility="public" complexity="1" crap="1" count="11"/>
+      <line num="153" type="stmt" count="11"/>
+      <line num="154" type="stmt" count="11"/>
+      <line num="155" type="stmt" count="11"/>
+      <line num="156" type="stmt" count="11"/>
+      <line num="157" type="stmt" count="11"/>
+      <line num="158" type="stmt" count="11"/>
+      <line num="159" type="stmt" count="11"/>
+      <line num="160" type="stmt" count="11"/>
+      <line num="162" type="stmt" count="11"/>
+      <line num="168" type="method" name="getChannel" visibility="public" complexity="1" crap="1" count="11"/>
+      <line num="170" type="stmt" count="11"/>
+      <line num="172" type="stmt" count="11"/>
+      <line num="181" type="method" name="getChannels" visibility="public" complexity="1" crap="1" count="11"/>
+      <line num="183" type="stmt" count="11"/>
+      <line num="185" type="stmt" count="11"/>
+      <line num="191" type="method" name="getChannelCredentials" visibility="public" complexity="1" crap="1" count="11"/>
+      <line num="193" type="stmt" count="11"/>
+      <line num="195" type="stmt" count="11"/>
+      <line num="201" type="method" name="sendRequest" visibility="private" complexity="4" crap="4" count="109"/>
+      <line num="204" type="stmt" count="109"/>
+      <line num="205" type="stmt" count="109"/>
+      <line num="206" type="stmt" count="109"/>
+      <line num="208" type="stmt" count="109"/>
+      <line num="209" type="stmt" count="11"/>
+      <line num="210" type="stmt" count="98"/>
+      <line num="211" type="stmt" count="32"/>
+      <line num="214" type="stmt" count="109"/>
+      <line num="215" type="stmt" count="90"/>
+      <line num="216" type="stmt" count="90"/>
+      <line num="219" type="stmt" count="19"/>
+      <metrics loc="223" ncloc="184" classes="1" methods="13" coveredmethods="13" conditionals="0" coveredconditionals="0" statements="69" coveredstatements="69" elements="82" coveredelements="82"/>
+    </file>
+    <file name="C:\Users\Elijah\Documents\Projects\play_code\vkplay-sdk\src\DTO\CategoryDTO.php">
+      <class name="PlayCode\VKPlayLiveSDK\DTO\CategoryDTO" namespace="global">
+        <metrics complexity="2" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="8" elements="10" coveredelements="10"/>
+      </class>
+      <line num="9" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="2"/>
+      <line num="17" type="stmt" count="2"/>
+      <line num="19" type="method" name="fromArray" visibility="public" complexity="1" crap="1" count="2"/>
+      <line num="21" type="stmt" count="2"/>
+      <line num="22" type="stmt" count="2"/>
+      <line num="23" type="stmt" count="2"/>
+      <line num="24" type="stmt" count="2"/>
+      <line num="25" type="stmt" count="2"/>
+      <line num="26" type="stmt" count="2"/>
+      <line num="27" type="stmt" count="2"/>
+      <metrics loc="29" ncloc="29" classes="1" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="8" elements="10" coveredelements="10"/>
+    </file>
+    <file name="C:\Users\Elijah\Documents\Projects\play_code\vkplay-sdk\src\DTO\CategoryWithCoverDTO.php">
+      <class name="PlayCode\VKPlayLiveSDK\DTO\CategoryWithCoverDTO" namespace="global">
+        <metrics complexity="2" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="7" coveredstatements="7" elements="9" coveredelements="9"/>
+      </class>
+      <line num="7" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="14" type="stmt" count="1"/>
+      <line num="16" type="method" name="fromArray" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="18" type="stmt" count="1"/>
+      <line num="19" type="stmt" count="1"/>
+      <line num="20" type="stmt" count="1"/>
+      <line num="21" type="stmt" count="1"/>
+      <line num="22" type="stmt" count="1"/>
+      <line num="23" type="stmt" count="1"/>
+      <metrics loc="25" ncloc="25" classes="1" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="7" coveredstatements="7" elements="9" coveredelements="9"/>
+    </file>
+    <file name="C:\Users\Elijah\Documents\Projects\play_code\vkplay-sdk\src\DTO\ChannelDTO.php">
+      <class name="PlayCode\VKPlayLiveSDK\DTO\ChannelDTO" namespace="global">
+        <metrics complexity="2" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="6" coveredstatements="6" elements="8" coveredelements="8"/>
+      </class>
+      <line num="9" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="3"/>
+      <line num="15" type="stmt" count="3"/>
+      <line num="17" type="method" name="fromArray" visibility="public" complexity="1" crap="1" count="3"/>
+      <line num="19" type="stmt" count="3"/>
+      <line num="20" type="stmt" count="3"/>
+      <line num="21" type="stmt" count="3"/>
+      <line num="22" type="stmt" count="3"/>
+      <line num="23" type="stmt" count="3"/>
+      <metrics loc="25" ncloc="25" classes="1" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="6" coveredstatements="6" elements="8" coveredelements="8"/>
+    </file>
+    <file name="C:\Users\Elijah\Documents\Projects\play_code\vkplay-sdk\src\DTO\ChannelInfoDTO.php">
+      <class name="PlayCode\VKPlayLiveSDK\DTO\ChannelInfoDTO" namespace="global">
+        <metrics complexity="2" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="8" elements="10" coveredelements="10"/>
+      </class>
+      <line num="9" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="3"/>
+      <line num="17" type="stmt" count="3"/>
+      <line num="19" type="method" name="fromArray" visibility="public" complexity="1" crap="1" count="3"/>
+      <line num="21" type="stmt" count="3"/>
+      <line num="22" type="stmt" count="3"/>
+      <line num="23" type="stmt" count="3"/>
+      <line num="24" type="stmt" count="3"/>
+      <line num="25" type="stmt" count="3"/>
+      <line num="26" type="stmt" count="3"/>
+      <line num="27" type="stmt" count="3"/>
+      <metrics loc="29" ncloc="29" classes="1" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="8" elements="10" coveredelements="10"/>
+    </file>
+    <file name="C:\Users\Elijah\Documents\Projects\play_code\vkplay-sdk\src\DTO\CountersDTO.php">
+      <class name="PlayCode\VKPlayLiveSDK\DTO\CountersDTO" namespace="global">
+        <metrics complexity="2" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="5" coveredstatements="5" elements="7" coveredelements="7"/>
+      </class>
+      <line num="9" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="3"/>
+      <line num="14" type="stmt" count="3"/>
+      <line num="16" type="method" name="fromArray" visibility="public" complexity="1" crap="1" count="3"/>
+      <line num="18" type="stmt" count="3"/>
+      <line num="19" type="stmt" count="3"/>
+      <line num="20" type="stmt" count="3"/>
+      <line num="21" type="stmt" count="3"/>
+      <metrics loc="23" ncloc="23" classes="1" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="5" coveredstatements="5" elements="7" coveredelements="7"/>
+    </file>
+    <file name="C:\Users\Elijah\Documents\Projects\play_code\vkplay-sdk\src\DTO\OwnerDTO.php">
+      <class name="PlayCode\VKPlayLiveSDK\DTO\OwnerDTO" namespace="global">
+        <metrics complexity="2" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="8" elements="10" coveredelements="10"/>
+      </class>
+      <line num="9" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="3"/>
+      <line num="17" type="stmt" count="3"/>
+      <line num="19" type="method" name="fromArray" visibility="public" complexity="1" crap="1" count="3"/>
+      <line num="21" type="stmt" count="3"/>
+      <line num="22" type="stmt" count="3"/>
+      <line num="23" type="stmt" count="3"/>
+      <line num="24" type="stmt" count="3"/>
+      <line num="25" type="stmt" count="3"/>
+      <line num="26" type="stmt" count="3"/>
+      <line num="27" type="stmt" count="3"/>
+      <metrics loc="29" ncloc="29" classes="1" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="8" elements="10" coveredelements="10"/>
+    </file>
+    <file name="C:\Users\Elijah\Documents\Projects\play_code\vkplay-sdk\src\DTO\ReactionDTO.php">
+      <class name="PlayCode\VKPlayLiveSDK\DTO\ReactionDTO" namespace="global">
+        <metrics complexity="2" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="5" coveredstatements="5" elements="7" coveredelements="7"/>
+      </class>
+      <line num="11" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="2"/>
+      <line num="16" type="stmt" count="2"/>
+      <line num="18" type="method" name="fromArray" visibility="public" complexity="1" crap="1" count="2"/>
+      <line num="20" type="stmt" count="2"/>
+      <line num="21" type="stmt" count="2"/>
+      <line num="22" type="stmt" count="2"/>
+      <line num="23" type="stmt" count="2"/>
+      <metrics loc="25" ncloc="25" classes="1" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="5" coveredstatements="5" elements="7" coveredelements="7"/>
+    </file>
+    <file name="C:\Users\Elijah\Documents\Projects\play_code\vkplay-sdk\src\DTO\SmallCategoryDTO.php">
+      <class name="PlayCode\VKPlayLiveSDK\DTO\SmallCategoryDTO" namespace="global">
+        <metrics complexity="2" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="6" coveredstatements="6" elements="8" coveredelements="8"/>
+      </class>
+      <line num="7" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="3"/>
+      <line num="13" type="stmt" count="3"/>
+      <line num="15" type="method" name="fromArray" visibility="public" complexity="1" crap="1" count="3"/>
+      <line num="17" type="stmt" count="3"/>
+      <line num="18" type="stmt" count="3"/>
+      <line num="19" type="stmt" count="3"/>
+      <line num="20" type="stmt" count="3"/>
+      <line num="21" type="stmt" count="3"/>
+      <metrics loc="23" ncloc="23" classes="1" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="6" coveredstatements="6" elements="8" coveredelements="8"/>
+    </file>
+    <file name="C:\Users\Elijah\Documents\Projects\play_code\vkplay-sdk\src\DTO\StreamInfoDTO.php">
+      <class name="PlayCode\VKPlayLiveSDK\DTO\StreamInfoDTO" namespace="global">
+        <metrics complexity="2" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="12" coveredstatements="12" elements="14" coveredelements="14"/>
+      </class>
+      <line num="9" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="3"/>
+      <line num="21" type="stmt" count="3"/>
+      <line num="23" type="method" name="fromArray" visibility="public" complexity="1" crap="1" count="3"/>
+      <line num="25" type="stmt" count="3"/>
+      <line num="26" type="stmt" count="3"/>
+      <line num="27" type="stmt" count="3"/>
+      <line num="28" type="stmt" count="3"/>
+      <line num="29" type="stmt" count="3"/>
+      <line num="30" type="stmt" count="3"/>
+      <line num="31" type="stmt" count="3"/>
+      <line num="32" type="stmt" count="3"/>
+      <line num="33" type="stmt" count="3"/>
+      <line num="34" type="stmt" count="3"/>
+      <line num="35" type="stmt" count="3"/>
+      <metrics loc="37" ncloc="37" classes="1" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="12" coveredstatements="12" elements="14" coveredelements="14"/>
+    </file>
+    <file name="C:\Users\Elijah\Documents\Projects\play_code\vkplay-sdk\src\DTO\WebSocketChannelsDTO.php">
+      <class name="PlayCode\VKPlayLiveSDK\DTO\WebSocketChannelsDTO" namespace="global">
+        <metrics complexity="2" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="11" coveredstatements="11" elements="13" coveredelements="13"/>
+      </class>
+      <line num="9" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="3"/>
+      <line num="20" type="stmt" count="3"/>
+      <line num="22" type="method" name="fromArray" visibility="public" complexity="1" crap="1" count="3"/>
+      <line num="24" type="stmt" count="3"/>
+      <line num="25" type="stmt" count="3"/>
+      <line num="26" type="stmt" count="3"/>
+      <line num="27" type="stmt" count="3"/>
+      <line num="28" type="stmt" count="3"/>
+      <line num="29" type="stmt" count="3"/>
+      <line num="30" type="stmt" count="3"/>
+      <line num="31" type="stmt" count="3"/>
+      <line num="32" type="stmt" count="3"/>
+      <line num="33" type="stmt" count="3"/>
+      <metrics loc="36" ncloc="36" classes="1" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="11" coveredstatements="11" elements="13" coveredelements="13"/>
+    </file>
+    <file name="C:\Users\Elijah\Documents\Projects\play_code\vkplay-sdk\src\Exception\ClientException.php">
+      <class name="PlayCode\VKPlayLiveSDK\Exception\ClientException" namespace="global">
+        <metrics complexity="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+      </class>
+      <metrics loc="11" ncloc="11" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+    </file>
+    <file name="C:\Users\Elijah\Documents\Projects\play_code\vkplay-sdk\src\Exception\ExceptionFactory.php">
+      <class name="PlayCode\VKPlayLiveSDK\Exception\ExceptionFactory" namespace="global">
+        <metrics complexity="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="11" coveredstatements="11" elements="12" coveredelements="12"/>
+      </class>
+      <line num="9" type="method" name="createException" visibility="public" complexity="1" crap="1" count="90"/>
+      <line num="11" type="stmt" count="90"/>
+      <line num="12" type="stmt" count="90"/>
+      <line num="13" type="stmt" count="90"/>
+      <line num="14" type="stmt" count="90"/>
+      <line num="15" type="stmt" count="90"/>
+      <line num="16" type="stmt" count="90"/>
+      <line num="17" type="stmt" count="90"/>
+      <line num="18" type="stmt" count="90"/>
+      <line num="19" type="stmt" count="90"/>
+      <line num="20" type="stmt" count="90"/>
+      <line num="21" type="stmt" count="90"/>
+      <metrics loc="23" ncloc="23" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="11" coveredstatements="11" elements="12" coveredelements="12"/>
+    </file>
+    <file name="C:\Users\Elijah\Documents\Projects\play_code\vkplay-sdk\src\Exception\ForbiddenException.php">
+      <class name="PlayCode\VKPlayLiveSDK\Exception\ForbiddenException" namespace="global">
+        <metrics complexity="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="1" elements="2" coveredelements="2"/>
+      </class>
+      <line num="7" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="10"/>
+      <line num="9" type="stmt" count="10"/>
+      <metrics loc="11" ncloc="11" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="1" elements="2" coveredelements="2"/>
+    </file>
+    <file name="C:\Users\Elijah\Documents\Projects\play_code\vkplay-sdk\src\Exception\InternalServerErrorException.php">
+      <class name="PlayCode\VKPlayLiveSDK\Exception\InternalServerErrorException" namespace="global">
+        <metrics complexity="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="1" elements="2" coveredelements="2"/>
+      </class>
+      <line num="7" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="10"/>
+      <line num="9" type="stmt" count="10"/>
+      <metrics loc="11" ncloc="11" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="1" elements="2" coveredelements="2"/>
+    </file>
+    <file name="C:\Users\Elijah\Documents\Projects\play_code\vkplay-sdk\src\Exception\InvalidParamException.php">
+      <class name="PlayCode\VKPlayLiveSDK\Exception\InvalidParamException" namespace="global">
+        <metrics complexity="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="1" elements="2" coveredelements="2"/>
+      </class>
+      <line num="7" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="10"/>
+      <line num="9" type="stmt" count="10"/>
+      <metrics loc="11" ncloc="11" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="1" elements="2" coveredelements="2"/>
+    </file>
+    <file name="C:\Users\Elijah\Documents\Projects\play_code\vkplay-sdk\src\Exception\NotFoundException.php">
+      <class name="PlayCode\VKPlayLiveSDK\Exception\NotFoundException" namespace="global">
+        <metrics complexity="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="1" elements="2" coveredelements="2"/>
+      </class>
+      <line num="7" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="10"/>
+      <line num="9" type="stmt" count="10"/>
+      <metrics loc="11" ncloc="11" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="1" elements="2" coveredelements="2"/>
+    </file>
+    <file name="C:\Users\Elijah\Documents\Projects\play_code\vkplay-sdk\src\Exception\ParseJsonException.php">
+      <class name="PlayCode\VKPlayLiveSDK\Exception\ParseJsonException" namespace="global">
+        <metrics complexity="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="1" elements="2" coveredelements="2"/>
+      </class>
+      <line num="9" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="9"/>
+      <line num="11" type="stmt" count="9"/>
+      <metrics loc="13" ncloc="13" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="1" elements="2" coveredelements="2"/>
+    </file>
+    <file name="C:\Users\Elijah\Documents\Projects\play_code\vkplay-sdk\src\Exception\RateLimitExceededException.php">
+      <class name="PlayCode\VKPlayLiveSDK\Exception\RateLimitExceededException" namespace="global">
+        <metrics complexity="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="1" elements="2" coveredelements="2"/>
+      </class>
+      <line num="7" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="10"/>
+      <line num="9" type="stmt" count="10"/>
+      <metrics loc="11" ncloc="11" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="1" elements="2" coveredelements="2"/>
+    </file>
+    <file name="C:\Users\Elijah\Documents\Projects\play_code\vkplay-sdk\src\Exception\ServiceUnavailableException.php">
+      <class name="PlayCode\VKPlayLiveSDK\Exception\ServiceUnavailableException" namespace="global">
+        <metrics complexity="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="1" elements="2" coveredelements="2"/>
+      </class>
+      <line num="7" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="10"/>
+      <line num="9" type="stmt" count="10"/>
+      <metrics loc="11" ncloc="11" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="1" elements="2" coveredelements="2"/>
+    </file>
+    <file name="C:\Users\Elijah\Documents\Projects\play_code\vkplay-sdk\src\Exception\UnauthorizedException.php">
+      <class name="PlayCode\VKPlayLiveSDK\Exception\UnauthorizedException" namespace="global">
+        <metrics complexity="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="1" elements="2" coveredelements="2"/>
+      </class>
+      <line num="7" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="10"/>
+      <line num="9" type="stmt" count="10"/>
+      <metrics loc="11" ncloc="11" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="1" elements="2" coveredelements="2"/>
+    </file>
+    <file name="C:\Users\Elijah\Documents\Projects\play_code\vkplay-sdk\src\Exception\UnprocessableEntityException.php">
+      <class name="PlayCode\VKPlayLiveSDK\Exception\UnprocessableEntityException" namespace="global">
+        <metrics complexity="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="1" elements="2" coveredelements="2"/>
+      </class>
+      <line num="7" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="10"/>
+      <line num="9" type="stmt" count="10"/>
+      <metrics loc="11" ncloc="11" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="1" elements="2" coveredelements="2"/>
+    </file>
+    <file name="C:\Users\Elijah\Documents\Projects\play_code\vkplay-sdk\src\Request\AccessTokenRequest.php">
+      <class name="PlayCode\VKPlayLiveSDK\Request\AccessTokenRequest" namespace="global">
+        <metrics complexity="6" methods="6" coveredmethods="6" conditionals="0" coveredconditionals="0" statements="13" coveredstatements="13" elements="19" coveredelements="19"/>
+      </class>
+      <line num="11" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="22"/>
+      <line num="17" type="stmt" count="22"/>
+      <line num="19" type="method" name="getEndpoint" visibility="public" complexity="1" crap="1" count="22"/>
+      <line num="21" type="stmt" count="22"/>
+      <line num="24" type="method" name="getMethod" visibility="public" complexity="1" crap="1" count="22"/>
+      <line num="26" type="stmt" count="22"/>
+      <line num="29" type="method" name="getFormParams" visibility="public" complexity="1" crap="1" count="11"/>
+      <line num="31" type="stmt" count="11"/>
+      <line num="32" type="stmt" count="11"/>
+      <line num="33" type="stmt" count="11"/>
+      <line num="34" type="stmt" count="11"/>
+      <line num="35" type="stmt" count="11"/>
+      <line num="38" type="method" name="getJsonParams" visibility="public" complexity="1" crap="1" count="22"/>
+      <line num="40" type="stmt" count="22"/>
+      <line num="43" type="method" name="getHeaders" visibility="public" complexity="1" crap="1" count="22"/>
+      <line num="45" type="stmt" count="22"/>
+      <line num="46" type="stmt" count="22"/>
+      <line num="47" type="stmt" count="22"/>
+      <line num="48" type="stmt" count="22"/>
+      <metrics loc="50" ncloc="50" classes="1" methods="6" coveredmethods="6" conditionals="0" coveredconditionals="0" statements="13" coveredstatements="13" elements="19" coveredelements="19"/>
+    </file>
+    <file name="C:\Users\Elijah\Documents\Projects\play_code\vkplay-sdk\src\Request\AppAndUserAuthRequest.php">
+      <class name="PlayCode\VKPlayLiveSDK\Request\AppAndUserAuthRequest" namespace="global">
+        <metrics complexity="5" methods="4" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="10" coveredstatements="10" elements="14" coveredelements="14"/>
+      </class>
+      <line num="7" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="66"/>
+      <line num="13" type="stmt" count="66"/>
+      <line num="15" type="method" name="getFormParams" visibility="public" complexity="1" crap="1" count="55"/>
+      <line num="17" type="stmt" count="55"/>
+      <line num="20" type="method" name="getJsonParams" visibility="public" complexity="1" crap="1" count="55"/>
+      <line num="22" type="stmt" count="55"/>
+      <line num="25" type="method" name="getHeaders" visibility="public" complexity="2" crap="2" count="66"/>
+      <line num="27" type="stmt" count="66"/>
+      <line num="28" type="stmt" count="66"/>
+      <line num="29" type="stmt" count="66"/>
+      <line num="31" type="stmt" count="66"/>
+      <line num="32" type="stmt" count="22"/>
+      <line num="34" type="stmt" count="44"/>
+      <line num="36" type="stmt" count="66"/>
+      <metrics loc="38" ncloc="38" classes="1" methods="4" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="10" coveredstatements="10" elements="14" coveredelements="14"/>
+    </file>
+    <file name="C:\Users\Elijah\Documents\Projects\play_code\vkplay-sdk\src\Request\CategoryRequest.php">
+      <class name="PlayCode\VKPlayLiveSDK\Request\CategoryRequest" namespace="global">
+        <metrics complexity="3" methods="3" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="3" coveredstatements="3" elements="6" coveredelements="6"/>
+      </class>
+      <line num="7" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="11"/>
+      <line num="14" type="stmt" count="11"/>
+      <line num="16" type="method" name="getEndpoint" visibility="public" complexity="1" crap="1" count="11"/>
+      <line num="18" type="stmt" count="11"/>
+      <line num="21" type="method" name="getMethod" visibility="public" complexity="1" crap="1" count="11"/>
+      <line num="23" type="stmt" count="11"/>
+      <metrics loc="25" ncloc="25" classes="1" methods="3" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="3" coveredstatements="3" elements="6" coveredelements="6"/>
+    </file>
+    <file name="C:\Users\Elijah\Documents\Projects\play_code\vkplay-sdk\src\Request\ChannelCredentialsRequest.php">
+      <class name="PlayCode\VKPlayLiveSDK\Request\ChannelCredentialsRequest" namespace="global">
+        <metrics complexity="6" methods="6" coveredmethods="6" conditionals="0" coveredconditionals="0" statements="9" coveredstatements="9" elements="15" coveredelements="15"/>
+      </class>
+      <line num="7" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="11"/>
+      <line num="12" type="stmt" count="11"/>
+      <line num="14" type="method" name="getEndpoint" visibility="public" complexity="1" crap="1" count="11"/>
+      <line num="16" type="stmt" count="11"/>
+      <line num="19" type="method" name="getMethod" visibility="public" complexity="1" crap="1" count="11"/>
+      <line num="21" type="stmt" count="11"/>
+      <line num="24" type="method" name="getFormParams" visibility="public" complexity="1" crap="1" count="11"/>
+      <line num="26" type="stmt" count="11"/>
+      <line num="29" type="method" name="getJsonParams" visibility="public" complexity="1" crap="1" count="11"/>
+      <line num="31" type="stmt" count="11"/>
+      <line num="34" type="method" name="getHeaders" visibility="public" complexity="1" crap="1" count="11"/>
+      <line num="36" type="stmt" count="11"/>
+      <line num="37" type="stmt" count="11"/>
+      <line num="38" type="stmt" count="11"/>
+      <line num="39" type="stmt" count="11"/>
+      <metrics loc="41" ncloc="41" classes="1" methods="6" coveredmethods="6" conditionals="0" coveredconditionals="0" statements="9" coveredstatements="9" elements="15" coveredelements="15"/>
+    </file>
+    <file name="C:\Users\Elijah\Documents\Projects\play_code\vkplay-sdk\src\Request\ChannelRequest.php">
+      <class name="PlayCode\VKPlayLiveSDK\Request\ChannelRequest" namespace="global">
+        <metrics complexity="3" methods="3" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="3" coveredstatements="3" elements="6" coveredelements="6"/>
+      </class>
+      <line num="7" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="44"/>
+      <line num="14" type="stmt" count="44"/>
+      <line num="17" type="method" name="getEndpoint" visibility="public" complexity="1" crap="1" count="11"/>
+      <line num="19" type="stmt" count="11"/>
+      <line num="22" type="method" name="getMethod" visibility="public" complexity="1" crap="1" count="44"/>
+      <line num="24" type="stmt" count="44"/>
+      <metrics loc="26" ncloc="26" classes="1" methods="3" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="3" coveredstatements="3" elements="6" coveredelements="6"/>
+    </file>
+    <file name="C:\Users\Elijah\Documents\Projects\play_code\vkplay-sdk\src\Request\ChannelsRequest.php">
+      <class name="PlayCode\VKPlayLiveSDK\Request\ChannelsRequest" namespace="global">
+        <metrics complexity="4" methods="4" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="9" coveredstatements="9" elements="13" coveredelements="13"/>
+      </class>
+      <line num="9" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="11"/>
+      <line num="16" type="stmt" count="11"/>
+      <line num="19" type="method" name="getEndpoint" visibility="public" complexity="1" crap="1" count="11"/>
+      <line num="21" type="stmt" count="11"/>
+      <line num="24" type="method" name="getMethod" visibility="public" complexity="1" crap="1" count="11"/>
+      <line num="26" type="stmt" count="11"/>
+      <line num="29" type="method" name="getJsonParams" visibility="public" complexity="1" crap="1" count="11"/>
+      <line num="31" type="stmt" count="11"/>
+      <line num="32" type="stmt" count="11"/>
+      <line num="33" type="stmt" count="11"/>
+      <line num="34" type="stmt" count="11"/>
+      <line num="35" type="stmt" count="11"/>
+      <line num="36" type="stmt" count="11"/>
+      <metrics loc="38" ncloc="38" classes="1" methods="4" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="9" coveredstatements="9" elements="13" coveredelements="13"/>
+    </file>
+    <file name="C:\Users\Elijah\Documents\Projects\play_code\vkplay-sdk\src\Request\OnlineCategoriesRequest.php">
+      <class name="PlayCode\VKPlayLiveSDK\Request\OnlineCategoriesRequest" namespace="global">
+        <metrics complexity="2" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="2" coveredstatements="2" elements="4" coveredelements="4"/>
+      </class>
+      <line num="7" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="11"/>
+      <line num="15" type="stmt" count="11"/>
+      <line num="18" type="method" name="getEndpoint" visibility="public" complexity="1" crap="1" count="11"/>
+      <line num="20" type="stmt" count="11"/>
+      <metrics loc="22" ncloc="22" classes="1" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="2" coveredstatements="2" elements="4" coveredelements="4"/>
+    </file>
+    <file name="C:\Users\Elijah\Documents\Projects\play_code\vkplay-sdk\src\Request\OnlineChannelsRequest.php">
+      <class name="PlayCode\VKPlayLiveSDK\Request\OnlineChannelsRequest" namespace="global">
+        <metrics complexity="5" methods="3" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="10" coveredstatements="10" elements="13" coveredelements="13"/>
+      </class>
+      <line num="8" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="33"/>
+      <line num="17" type="stmt" count="33"/>
+      <line num="20" type="method" name="getEndpoint" visibility="public" complexity="1" crap="1" count="11"/>
+      <line num="22" type="stmt" count="11"/>
+      <line num="25" type="method" name="getQuery" visibility="protected" complexity="3" crap="3" count="22"/>
+      <line num="27" type="stmt" count="22"/>
+      <line num="28" type="stmt" count="22"/>
+      <line num="29" type="stmt" count="22"/>
+      <line num="30" type="stmt" count="22"/>
+      <line num="31" type="stmt" count="11"/>
+      <line num="33" type="stmt" count="22"/>
+      <line num="34" type="stmt" count="11"/>
+      <line num="37" type="stmt" count="22"/>
+      <metrics loc="39" ncloc="39" classes="1" methods="3" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="10" coveredstatements="10" elements="13" coveredelements="13"/>
+    </file>
+    <file name="C:\Users\Elijah\Documents\Projects\play_code\vkplay-sdk\src\Request\RefreshTokenRequest.php">
+      <class name="PlayCode\VKPlayLiveSDK\Request\RefreshTokenRequest" namespace="global">
+        <metrics complexity="2" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="5" coveredstatements="5" elements="7" coveredelements="7"/>
+      </class>
+      <line num="11" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="11"/>
+      <line num="16" type="stmt" count="11"/>
+      <line num="19" type="method" name="getFormParams" visibility="public" complexity="1" crap="1" count="11"/>
+      <line num="21" type="stmt" count="11"/>
+      <line num="22" type="stmt" count="11"/>
+      <line num="23" type="stmt" count="11"/>
+      <line num="24" type="stmt" count="11"/>
+      <metrics loc="26" ncloc="26" classes="1" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="5" coveredstatements="5" elements="7" coveredelements="7"/>
+    </file>
+    <file name="C:\Users\Elijah\Documents\Projects\play_code\vkplay-sdk\src\Request\RequestInterface.php">
+      <metrics loc="15" ncloc="15" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+    </file>
+    <file name="C:\Users\Elijah\Documents\Projects\play_code\vkplay-sdk\src\Request\RevokeRequest.php">
+      <class name="PlayCode\VKPlayLiveSDK\Request\RevokeRequest" namespace="global">
+        <metrics complexity="6" methods="6" coveredmethods="6" conditionals="0" coveredconditionals="0" statements="12" coveredstatements="12" elements="18" coveredelements="18"/>
+      </class>
+      <line num="12" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="10"/>
+      <line num="19" type="stmt" count="10"/>
+      <line num="20" type="method" name="getEndpoint" visibility="public" complexity="1" crap="1" count="10"/>
+      <line num="22" type="stmt" count="10"/>
+      <line num="25" type="method" name="getMethod" visibility="public" complexity="1" crap="1" count="10"/>
+      <line num="27" type="stmt" count="10"/>
+      <line num="30" type="method" name="getFormParams" visibility="public" complexity="1" crap="1" count="10"/>
+      <line num="32" type="stmt" count="10"/>
+      <line num="33" type="stmt" count="10"/>
+      <line num="34" type="stmt" count="10"/>
+      <line num="35" type="stmt" count="10"/>
+      <line num="38" type="method" name="getJsonParams" visibility="public" complexity="1" crap="1" count="10"/>
+      <line num="40" type="stmt" count="10"/>
+      <line num="43" type="method" name="getHeaders" visibility="public" complexity="1" crap="1" count="10"/>
+      <line num="45" type="stmt" count="10"/>
+      <line num="46" type="stmt" count="10"/>
+      <line num="47" type="stmt" count="10"/>
+      <line num="48" type="stmt" count="10"/>
+      <metrics loc="50" ncloc="50" classes="1" methods="6" coveredmethods="6" conditionals="0" coveredconditionals="0" statements="12" coveredstatements="12" elements="18" coveredelements="18"/>
+    </file>
+    <file name="C:\Users\Elijah\Documents\Projects\play_code\vkplay-sdk\src\Request\SearchCategoriesRequest.php">
+      <class name="PlayCode\VKPlayLiveSDK\Request\SearchCategoriesRequest" namespace="global">
+        <metrics complexity="4" methods="3" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="15" coveredstatements="15" elements="18" coveredelements="18"/>
+      </class>
+      <line num="16" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="11"/>
+      <line num="25" type="stmt" count="11"/>
+      <line num="26" type="stmt" count="11"/>
+      <line num="27" type="stmt" count="11"/>
+      <line num="28" type="stmt" count="11"/>
+      <line num="29" type="stmt" count="11"/>
+      <line num="30" type="stmt" count="11"/>
+      <line num="31" type="stmt" count="11"/>
+      <line num="34" type="method" name="getEndpoint" visibility="public" complexity="1" crap="1" count="11"/>
+      <line num="36" type="stmt" count="11"/>
+      <line num="39" type="method" name="getQuery" visibility="protected" complexity="2" crap="2" count="11"/>
+      <line num="41" type="stmt" count="11"/>
+      <line num="42" type="stmt" count="11"/>
+      <line num="43" type="stmt" count="11"/>
+      <line num="44" type="stmt" count="11"/>
+      <line num="45" type="stmt" count="11"/>
+      <line num="46" type="stmt" count="11"/>
+      <line num="49" type="stmt" count="11"/>
+      <metrics loc="51" ncloc="51" classes="1" methods="3" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="15" coveredstatements="15" elements="18" coveredelements="18"/>
+    </file>
+    <file name="C:\Users\Elijah\Documents\Projects\play_code\vkplay-sdk\src\Response\CategoriesResponse.php">
+      <class name="PlayCode\VKPlayLiveSDK\Response\CategoriesResponse" namespace="global">
+        <metrics complexity="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="1" elements="2" coveredelements="2"/>
+      </class>
+      <line num="14" type="method" name="buildFromBody" visibility="protected" complexity="1" crap="1" count="2"/>
+      <line num="16" type="stmt" count="2"/>
+      <metrics loc="18" ncloc="17" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="1" elements="2" coveredelements="2"/>
+    </file>
+    <file name="C:\Users\Elijah\Documents\Projects\play_code\vkplay-sdk\src\Response\CategoryResponse.php">
+      <class name="PlayCode\VKPlayLiveSDK\Response\CategoryResponse" namespace="global">
+        <metrics complexity="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="1" elements="2" coveredelements="2"/>
+      </class>
+      <line num="13" type="method" name="buildFromBody" visibility="protected" complexity="1" crap="1" count="1"/>
+      <line num="15" type="stmt" count="1"/>
+      <metrics loc="17" ncloc="17" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="1" elements="2" coveredelements="2"/>
+    </file>
+    <file name="C:\Users\Elijah\Documents\Projects\play_code\vkplay-sdk\src\Response\ChannelCredentialsResponse.php">
+      <class name="PlayCode\VKPlayLiveSDK\Response\ChannelCredentialsResponse" namespace="global">
+        <metrics complexity="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="2" coveredstatements="2" elements="3" coveredelements="3"/>
+      </class>
+      <line num="12" type="method" name="buildFromBody" visibility="protected" complexity="1" crap="1" count="1"/>
+      <line num="14" type="stmt" count="1"/>
+      <line num="15" type="stmt" count="1"/>
+      <metrics loc="17" ncloc="17" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="2" coveredstatements="2" elements="3" coveredelements="3"/>
+    </file>
+    <file name="C:\Users\Elijah\Documents\Projects\play_code\vkplay-sdk\src\Response\ChannelResponse.php">
+      <class name="PlayCode\VKPlayLiveSDK\Response\ChannelResponse" namespace="global">
+        <metrics complexity="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="1" elements="2" coveredelements="2"/>
+      </class>
+      <line num="13" type="method" name="buildFromBody" visibility="protected" complexity="1" crap="1" count="1"/>
+      <line num="15" type="stmt" count="1"/>
+      <metrics loc="17" ncloc="17" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="1" elements="2" coveredelements="2"/>
+    </file>
+    <file name="C:\Users\Elijah\Documents\Projects\play_code\vkplay-sdk\src\Response\ChannelsResponse.php">
+      <class name="PlayCode\VKPlayLiveSDK\Response\ChannelsResponse" namespace="global">
+        <metrics complexity="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="1" elements="2" coveredelements="2"/>
+      </class>
+      <line num="16" type="method" name="buildFromBody" visibility="protected" complexity="1" crap="1" count="1"/>
+      <line num="18" type="stmt" count="1"/>
+      <metrics loc="20" ncloc="17" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="1" elements="2" coveredelements="2"/>
+    </file>
+    <file name="C:\Users\Elijah\Documents\Projects\play_code\vkplay-sdk\src\Response\JsonResponse.php">
+      <class name="PlayCode\VKPlayLiveSDK\Response\JsonResponse" namespace="global">
+        <metrics complexity="2" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="3" coveredstatements="3" elements="5" coveredelements="5"/>
+      </class>
+      <line num="13" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="18"/>
+      <line num="15" type="stmt" count="18"/>
+      <line num="17" type="stmt" count="18"/>
+      <line num="25" type="method" name="getJsonBodyDecoded" visibility="protected" complexity="1" crap="1" count="18"/>
+      <line num="27" type="stmt" count="18"/>
+      <metrics loc="29" ncloc="23" classes="1" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="3" coveredstatements="3" elements="5" coveredelements="5"/>
+    </file>
+    <file name="C:\Users\Elijah\Documents\Projects\play_code\vkplay-sdk\src\Response\OnlineChannelsResponse.php">
+      <class name="PlayCode\VKPlayLiveSDK\Response\OnlineChannelsResponse" namespace="global">
+        <metrics complexity="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="1" elements="2" coveredelements="2"/>
+      </class>
+      <line num="12" type="method" name="buildFromBody" visibility="protected" complexity="1" crap="1" count="1"/>
+      <line num="14" type="stmt" count="1"/>
+      <metrics loc="16" ncloc="15" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="1" elements="2" coveredelements="2"/>
+    </file>
+    <file name="C:\Users\Elijah\Documents\Projects\play_code\vkplay-sdk\src\Response\Response.php">
+      <class name="PlayCode\VKPlayLiveSDK\Response\Response" namespace="global">
+        <metrics complexity="4" methods="4" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="5" coveredstatements="5" elements="9" coveredelements="9"/>
+      </class>
+      <line num="12" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="19"/>
+      <line num="14" type="stmt" count="19"/>
+      <line num="15" type="stmt" count="19"/>
+      <line num="18" type="method" name="getBody" visibility="public" complexity="1" crap="1" count="18"/>
+      <line num="20" type="stmt" count="18"/>
+      <line num="23" type="method" name="getStatusCode" visibility="public" complexity="1" crap="1" count="18"/>
+      <line num="25" type="stmt" count="18"/>
+      <line num="28" type="method" name="createFromResponse" visibility="public" complexity="1" crap="1" count="18"/>
+      <line num="30" type="stmt" count="18"/>
+      <metrics loc="34" ncloc="34" classes="1" methods="4" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="5" coveredstatements="5" elements="9" coveredelements="9"/>
+    </file>
+    <file name="C:\Users\Elijah\Documents\Projects\play_code\vkplay-sdk\src\Response\ResponseInterface.php">
+      <metrics loc="12" ncloc="12" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+    </file>
+    <file name="C:\Users\Elijah\Documents\Projects\play_code\vkplay-sdk\src\Response\TokenResponse.php">
+      <class name="PlayCode\VKPlayLiveSDK\Response\TokenResponse" namespace="global">
+        <metrics complexity="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="4" elements="5" coveredelements="5"/>
+      </class>
+      <line num="14" type="method" name="buildFromBody" visibility="protected" complexity="1" crap="1" count="2"/>
+      <line num="16" type="stmt" count="2"/>
+      <line num="17" type="stmt" count="2"/>
+      <line num="18" type="stmt" count="2"/>
+      <line num="19" type="stmt" count="2"/>
+      <metrics loc="23" ncloc="23" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="4" elements="5" coveredelements="5"/>
+    </file>
+    <file name="C:\Users\Elijah\Documents\Projects\play_code\vkplay-sdk\src\Scope.php">
+      <class name="PlayCode\VKPlayLiveSDK\Scope" namespace="global">
+        <metrics complexity="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+      </class>
+      <metrics loc="29" ncloc="22" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+    </file>
+    <metrics files="46" loc="1303" ncloc="1246" classes="41" methods="98" coveredmethods="98" conditionals="0" coveredconditionals="0" statements="275" coveredstatements="275" elements="373" coveredelements="373"/>
+  </project>
+</coverage>

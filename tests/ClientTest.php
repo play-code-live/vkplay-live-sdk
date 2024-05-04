@@ -5,12 +5,36 @@ declare(strict_types=1);
 namespace PlayCode\Tests\VKPlayLiveSDK;
 
 use GuzzleHttp\Psr7\Response;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestCase;
+use PlayCode\VKPlayLiveSDK\DTO\CategoryDTO;
+use PlayCode\VKPlayLiveSDK\DTO\CategoryWithCoverDTO;
+use PlayCode\VKPlayLiveSDK\DTO\ChannelDTO;
+use PlayCode\VKPlayLiveSDK\DTO\ChannelInfoDTO;
+use PlayCode\VKPlayLiveSDK\DTO\CountersDTO;
+use PlayCode\VKPlayLiveSDK\DTO\OwnerDTO;
+use PlayCode\VKPlayLiveSDK\DTO\ReactionDTO;
+use PlayCode\VKPlayLiveSDK\DTO\SmallCategoryDTO;
+use PlayCode\VKPlayLiveSDK\DTO\StreamInfoDTO;
+use PlayCode\VKPlayLiveSDK\DTO\WebSocketChannelsDTO;
+use PlayCode\VKPlayLiveSDK\Request\CategoryRequest;
+use PlayCode\VKPlayLiveSDK\Request\ChannelsRequest;
+use PlayCode\VKPlayLiveSDK\Request\OnlineCategoriesRequest;
+use PlayCode\VKPlayLiveSDK\Request\OnlineChannelsRequest;
+use PlayCode\VKPlayLiveSDK\Request\SearchCategoriesRequest;
+use PlayCode\VKPlayLiveSDK\Response\CategoriesResponse;
+use PlayCode\VKPlayLiveSDK\Response\CategoryResponse;
+use PlayCode\VKPlayLiveSDK\Response\ChannelResponse;
+use PlayCode\VKPlayLiveSDK\Response\ChannelsResponse;
+use PlayCode\VKPlayLiveSDK\Response\OnlineChannelsResponse;
+use PlayCode\VKPlayLiveSDK\Response\Response as SdkResponse;
 use PlayCode\VKPlayLiveSDK\Category;
 use PlayCode\VKPlayLiveSDK\Client;
 use PlayCode\VKPlayLiveSDK\Exception\ClientException;
+use PlayCode\VKPlayLiveSDK\Exception\ExceptionFactory;
 use PlayCode\VKPlayLiveSDK\Exception\ForbiddenException;
 use PlayCode\VKPlayLiveSDK\Exception\InternalServerErrorException;
 use PlayCode\VKPlayLiveSDK\Exception\InvalidParamException;
@@ -20,8 +44,60 @@ use PlayCode\VKPlayLiveSDK\Exception\RateLimitExceededException;
 use PlayCode\VKPlayLiveSDK\Exception\ServiceUnavailableException;
 use PlayCode\VKPlayLiveSDK\Exception\UnauthorizedException;
 use PlayCode\VKPlayLiveSDK\Exception\UnprocessableEntityException;
+use PlayCode\VKPlayLiveSDK\Request\AccessTokenRequest;
+use PlayCode\VKPlayLiveSDK\Request\AppAndUserAuthRequest;
+use PlayCode\VKPlayLiveSDK\Request\ChannelCredentialsRequest;
+use PlayCode\VKPlayLiveSDK\Request\ChannelRequest;
+use PlayCode\VKPlayLiveSDK\Request\RefreshTokenRequest;
+use PlayCode\VKPlayLiveSDK\Request\RevokeRequest;
+use PlayCode\VKPlayLiveSDK\Response\ChannelCredentialsResponse;
+use PlayCode\VKPlayLiveSDK\Response\JsonResponse;
+use PlayCode\VKPlayLiveSDK\Response\TokenResponse;
 use PlayCode\VKPlayLiveSDK\Scope;
 
+#[UsesClass(Client::class)]
+#[CoversClass(Client::class)]
+#[CoversClass(ExceptionFactory::class)]
+#[CoversClass(ClientException::class)]
+#[CoversClass(ForbiddenException::class)]
+#[CoversClass(InternalServerErrorException::class)]
+#[CoversClass(InvalidParamException::class)]
+#[CoversClass(NotFoundException::class)]
+#[CoversClass(ParseJsonException::class)]
+#[CoversClass(RateLimitExceededException::class)]
+#[CoversClass(ServiceUnavailableException::class)]
+#[CoversClass(UnauthorizedException::class)]
+#[CoversClass(UnprocessableEntityException::class)]
+#[CoversClass(AppAndUserAuthRequest::class)]
+#[CoversClass(AccessTokenRequest::class)]
+#[CoversClass(RefreshTokenRequest::class)]
+#[CoversClass(RevokeRequest::class)]
+#[CoversClass(ChannelCredentialsRequest::class)]
+#[CoversClass(ChannelRequest::class)]
+#[CoversClass(ChannelsRequest::class)]
+#[CoversClass(CategoryRequest::class)]
+#[CoversClass(SearchCategoriesRequest::class)]
+#[CoversClass(OnlineChannelsRequest::class)]
+#[CoversClass(OnlineCategoriesRequest::class)]
+#[CoversClass(SdkResponse::class)]
+#[CoversClass(JsonResponse::class)]
+#[CoversClass(TokenResponse::class)]
+#[CoversClass(ChannelCredentialsResponse::class)]
+#[CoversClass(ChannelResponse::class)]
+#[CoversClass(ChannelsResponse::class)]
+#[CoversClass(CategoryResponse::class)]
+#[CoversClass(CategoriesResponse::class)]
+#[CoversClass(OnlineChannelsResponse::class)]
+#[CoversClass(ChannelDTO::class)]
+#[CoversClass(ChannelInfoDTO::class)]
+#[CoversClass(CountersDTO::class)]
+#[CoversClass(ReactionDTO::class)]
+#[CoversClass(OwnerDTO::class)]
+#[CoversClass(CategoryDTO::class)]
+#[CoversClass(SmallCategoryDTO::class)]
+#[CoversClass(CategoryWithCoverDTO::class)]
+#[CoversClass(StreamInfoDTO::class)]
+#[CoversClass(WebSocketChannelsDTO::class)]
 class ClientTest extends TestCase
 {
     #[DataProvider('getAuthLinkProvider')]
