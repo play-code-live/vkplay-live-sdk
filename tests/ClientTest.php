@@ -9,8 +9,6 @@ use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use PlayCode\VKPlayLiveSDK\Client;
 use PlayCode\VKPlayLiveSDK\Exception\ClientException;
-use PlayCode\VKPlayLiveSDK\Exception\InternalServerErrorException;
-use PlayCode\VKPlayLiveSDK\Exception\InvalidParamException;
 use PlayCode\VKPlayLiveSDK\Exception\ParseJsonException;
 use PlayCode\VKPlayLiveSDK\Exception\RateLimitExceededException;
 use PlayCode\VKPlayLiveSDK\Exception\UnauthorizedException;
@@ -93,16 +91,14 @@ class ClientTest extends TestCase
                     'tokenType' => 'Bearer',
                 ]
             ],
-            'internal server error' => [
-                new ClientExtended([new Response(500, [], '')]),
-                [],
-                InternalServerErrorException::class,
-            ],
             'bad json' => [
-                new ClientExtended([new Response(200, [], 'error')]),
+                new ClientExtended([
+                    new Response(200, [], 'ok'),
+                ]),
                 [],
-                ParseJsonException::class,
-            ]
+                ParseJsonException::class
+            ],
+            ...self::getDefaultExceptionCases()
         ];
     }
 
@@ -127,13 +123,7 @@ class ClientTest extends TestCase
                 ]),
                 []
             ],
-            'bad request' => [
-                new ClientExtended([
-                    new Response(400, [], '{}'),
-                ]),
-                [],
-                InvalidParamException::class,
-            ],
+            ...self::getDefaultExceptionCases()
         ];
     }
 
@@ -212,12 +202,45 @@ class ClientTest extends TestCase
                     ]
                 ],
             ],
-            'internal error' => [
+            'bad json' => [
                 new ClientExtended([
-                    new Response(400, [], '{}'),
+                    new Response(200, [], 'ok'),
                 ]),
                 [],
-                ClientException::class,
+                ParseJsonException::class
+            ],
+            ...self::getDefaultExceptionCases()
+        ];
+    }
+
+    #[DataProvider('listCategoriesProvider')]
+    public function testListCategoriesOnline(Client $c, array $propValues, ?string $exception = null): void
+    {
+        $this->clientMethodCallTestRecursive(new MethodCallStruct(
+            'listCategoriesOnline',
+            [1],
+            $c,
+            $propValues,
+            $exception
+        ));
+    }
+
+    public static function listCategoriesProvider(): array
+    {
+        return [
+            'success' => [
+                new ClientExtended([
+                    new Response(200, [], '{"data":{"categories":[{"id":"some_id","title":"Говорим и смотрим","cover_url":"https://test.url/cover.png","type":"irl","counters":{"viewers":1514}}]}}'),
+                ]),
+                [
+                    [
+                        'id' => 'some_id',
+                        'title' => 'Говорим и смотрим',
+                        'type' => 'irl',
+                        'coverUrl' => 'https://test.url/cover.png',
+                        'viewers' => 1514,
+                    ]
+                ]
             ],
             'bad json' => [
                 new ClientExtended([
@@ -225,6 +248,20 @@ class ClientTest extends TestCase
                 ]),
                 [],
                 ParseJsonException::class
+            ],
+            ...self::getDefaultExceptionCases()
+        ];
+    }
+
+    private static function getDefaultExceptionCases(): array
+    {
+        return [
+            'internal error' => [
+                new ClientExtended([
+                    new Response(400, [], '{}'),
+                ]),
+                [],
+                ClientException::class,
             ],
             'token expired' => [
                 new ClientExtended([
