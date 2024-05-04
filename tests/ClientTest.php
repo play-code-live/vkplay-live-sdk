@@ -7,6 +7,7 @@ namespace PlayCode\Tests\VKPlayLiveSDK;
 use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
+use PlayCode\VKPlayLiveSDK\Category;
 use PlayCode\VKPlayLiveSDK\Client;
 use PlayCode\VKPlayLiveSDK\Exception\ClientException;
 use PlayCode\VKPlayLiveSDK\Exception\ParseJsonException;
@@ -219,6 +220,18 @@ class ClientTest extends TestCase
         $this->clientMethodCallTestRecursive(new MethodCallStruct(
             'listCategoriesOnline',
             [1],
+            $c,
+            $propValues,
+            $exception
+        ));
+    }
+
+    #[DataProvider('listCategoriesProvider')]
+    public function testSearchCategory(Client $c, array $propValues, ?string $exception = null): void
+    {
+        $this->clientMethodCallTestRecursive(new MethodCallStruct(
+            'searchCategory',
+            ['some search query', Category::TYPE_IRL, 1],
             $c,
             $propValues,
             $exception
