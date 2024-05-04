@@ -346,6 +346,34 @@ class ClientTest extends TestCase
         ];
     }
 
+    #[DataProvider('getChannelCredentialsProvider')]
+    public function testGetChannelCredentials(Client $c, array $propValues, ?string $exception = null): void
+    {
+        $this->clientMethodCallTest(new MethodCallStruct(
+            'getChannelCredentials',
+            ['play_code', 'some_access_token'],
+            $c,
+            $propValues,
+            $exception
+        ));
+    }
+
+    public static function getChannelCredentialsProvider(): array
+    {
+        return [
+            'success' => [
+                new ClientExtended([
+                    new Response(200, [], '{"data":{"url":"rtmp://stream.mock.url","token":"super_secret_token"}}'),
+                ]),
+                [
+                    'url' => 'rtmp://stream.mock.url',
+                    'token' => 'super_secret_token',
+                ],
+            ],
+            ...self::getDefaultExceptionCases(),
+        ];
+    }
+
     private static function getDefaultExceptionCases(bool $withJsonError = true): array
     {
         return [
